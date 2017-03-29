@@ -30,3 +30,9 @@ x = "id"
 y = "isafe"
 plt.plot(df[x], df[y], '.')
 plt.plot(df.loc[I, x], df.loc[I, y], 'ro')
+
+#
+# # from src.safeclass import SafeClass
+# from safeclass import SafeClass
+# M = np.random.randint(0,2,(200,500))
+# print SafeClass(M).creat_dataframe()

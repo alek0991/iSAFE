@@ -55,7 +55,7 @@ def apply_safe(M):
     phi = 1.0 * H / sum(haf)
     kappa = 1.0 * K / (np.unique(haf).shape[0])
     freq = M.mean(0)
-    safe = neutrality_divergence_proxy(phi, kappa, freq, method=2)
+    safe = neutrality_divergence_proxy(phi, kappa, freq, method=3)
     rank = pd.DataFrame(safe).rank(method = 'min', ascending=False).values.squeeze()
     df_safe = pd.DataFrame(np.asarray([safe, rank, phi, kappa, freq]).T, columns=["safe", "rank", "phi", "kappa", "freq"])
     return df_safe
