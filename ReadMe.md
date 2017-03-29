@@ -1,6 +1,5 @@
-iSAFE
+iSAFE: **i**ntegrated **S**election of **A**llele **F**avored by **E**volution
 ==========
-_i_ntegrated **S**election of **A**llele **F**avored by **E**volution
 
 Requirements
 ==========
