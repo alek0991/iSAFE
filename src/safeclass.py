@@ -30,7 +30,7 @@ class SafeClass:
         :return: N: Number of distinct carrier haplotypes of each mutation.
 
         """
-        
+
         haf_matrix = self.haf.reshape(-1, 1) * self.snp_matrix
         K = np.zeros((self.num_snps))
         for j in range(self.num_snps):

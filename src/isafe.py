@@ -2,7 +2,6 @@
 
 import argparse
 import pandas as pd
-from isafe_utils import apply_isafe
 from isafeclass import iSafeClass
 from utils import drop_duplicates
 
