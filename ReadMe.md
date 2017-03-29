@@ -4,4 +4,4 @@ Requirements
 #pandas version 0.18.0 or above
 Usage
 ===========
-```python2.7 ./src/isafe.py ./example/demo.txt ./example/demo -DD -Psi```
+```python2.7 ./src/isafe.py ./example/demo.txt ./example/demo```
