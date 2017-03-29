@@ -10,7 +10,7 @@
 *.aux
 *.bbl
 *.blg
-*.out
+#*.out
 *.log
 *.dvi
 *.gz
