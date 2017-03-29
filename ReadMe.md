@@ -1,6 +1,6 @@
 iSAFE
 ==========
-**i**ntegrated **S**election of **A**llele **F**avored by **E**volution
+__i__ntegrated **S**election of **A**llele **F**avored by **E**volution
 
 Requirements
 ==========
@@ -10,4 +10,6 @@ iSAFE requires ```Python2.7```.The following python packages are required:
 
 Run a demo
 ===========
-```python2.7 ./src/isafe.py ./example/demo.txt ./example/demo```
+```sh
+$ python2.7 ./src/isafe.py ./example/demo.txt ./example/demo
+```
