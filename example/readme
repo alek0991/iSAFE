@@ -1,1 +1,0 @@
-python2.7 ../src/isafe.py ./demo.txt ./demo -DD -Psi
