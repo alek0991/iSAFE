@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import argparse
 import pandas as pd
 from isafeclass import iSafeClass
