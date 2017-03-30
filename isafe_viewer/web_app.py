@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, jsonify
 import os
 
 app = Flask(__name__)
@@ -9,4 +9,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    return render_template('main.html')
+    if request.method == 'POST':
+        return jsonify(img_url_1='something.jpg', img_url_2='something2.jpg')
+    else:
+        return render_template('main.html')

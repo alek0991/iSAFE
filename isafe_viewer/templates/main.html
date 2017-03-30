@@ -64,6 +64,7 @@ function rsidSelect(){
 	<tr>
 	<td style="vertical-align:top;">
 		<div class="menu" id="menu">
+		<form method="post" role="form">
 			<label>Select Population(s):</label>
 			<select class="js-example-basic-multiple" multiple="multiple" style="width: 100%">
 			  <option value="AL">CEU</option>
@@ -142,8 +143,9 @@ function rsidSelect(){
 			<div class="menu-divider"></div>
 	
 			<p style="text-align: center;">
-				<input class="btn btn-primary" type="submit" value="Submit">
+				<input class="btn btn-primary" type="button" value="Submit" id="submitButton">
 			<p>
+		</form>
 		</div>
 	</td>
 
@@ -173,5 +175,27 @@ function rsidSelect(){
 <footer class="site-footer">
 <a href="https://proteomics.ucsd.edu/vbafna/">Bafna Lab</a>
 </footer>
+
+<script>
+$(function() {
+    $('#submitButton').click(function() {
+        $.ajax({
+            url: '/',
+            data: {
+                regionSize: $('#regionSize').val()
+            },
+            type: 'POST',
+            beforeSend: function() {
+            },
+            success: function(response) {
+                console.log(response.img_url_1);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+</script>
 
 </body>
