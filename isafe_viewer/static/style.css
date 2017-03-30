@@ -1,0 +1,60 @@
+html {
+}
+
+.content{
+  margin: 10px;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.menu{
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  width: 275px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.result{
+  width: 700px;
+  left: 300px;
+  top: 0px;
+  margin-left: 150px;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.site-footer{
+  padding: 10px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.menu-divider{
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.input-group-addon{
+  min-width: 116px;
+  text-align: left !important;
+}
+
+#regionSize{
+  width: 50px;
+  margin-left: 28px;
+}
+
+#randomSamples{
+  width: 50px;
+  margin-left: 10px;
+}
