@@ -220,6 +220,27 @@ $(function() {
                 $("#divLoading").hide();
                 $("#introduction").css({ opacity: 1 });
                 $("#result").css({ opacity: 1 });
+
+                if (response.has_errors)
+                {
+					$("#errorMessage").show();
+					$("#introduction").show();
+					$("#result").hide();
+
+					errorText = '';
+					for (i = 0; i < response.errors.length; ++i)
+					{
+						errorText += response.errors[i];
+						errorText += '<br>'
+					}
+					$("#errorMessage").html(errorText);
+				}
+				else
+				{
+					$("#errorMessage").hide();
+					$("#introduction").hide();
+					$("#result").show();
+				}
             },
             error: function(error) {
                 console.log(error);
