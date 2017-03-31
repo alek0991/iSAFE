@@ -150,7 +150,9 @@ function rsidSelect(){
 	</td>
 
 	<td style="vertical-align:top;">
-		<div class="result">
+		<div id="introduction" class="main-page">
+			<p id="errorMessage" class="error" style="display:none;">
+			</p>
 			<p>
 				<h3>Introduction</h3>
 				This is an awesome work done by the best students in the UC San Diego. You can find more information on the internet. 
@@ -168,6 +170,21 @@ function rsidSelect(){
 				The pictures are very clear, you can see our results simply by looking at them. If you can't understand the logic, you are fool. 
 			</p>
 		</div>
+		<div id="result" class="main-page" style="display:none;">
+			Some pictures:
+			<br>
+			Some pictures:
+			<br>
+			Some pictures:
+			<br>
+			Some pictures:
+			<br>
+			Some pictures:
+			<br>
+		</div>
+	    <div id="divLoading" style="display:none;">
+	    	Please Wait ...
+	    </div>
 	</td>
 	</tr>
 </div>
@@ -194,9 +211,15 @@ $(function() {
             },
             type: 'POST',
             beforeSend: function() {
+                $("#introduction").css({ opacity: 0.1 });
+                $("#result").css({ opacity: 0.1 });
+                $("#divLoading").show();
             },
             success: function(response) {
                 console.log(response.img_url_1);
+                $("#divLoading").hide();
+                $("#introduction").css({ opacity: 1 });
+                $("#result").css({ opacity: 1 });
             },
             error: function(error) {
                 console.log(error);

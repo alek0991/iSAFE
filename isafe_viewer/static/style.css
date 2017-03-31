@@ -15,13 +15,49 @@ html {
   padding-left: 10px;
 }
 
-.result{
+.main-page{
   width: 700px;
   left: 300px;
   top: 0px;
   margin-left: 150px;
   overflow-y: scroll;
   height: 100%;
+}
+
+.error{
+  color: red;
+  text-align: center;
+}
+
+#divLoading
+{
+  text-align: center;
+  border-radius: 6px;
+  /* display: block; */
+  position: absolute;
+  z-index: 100;
+  background-image: url(http://loadinggif.com/images/image-selection/3.gif);
+  /*background-color: rgb(153, 153, 153);*/
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-position: center;
+  left: 420px;
+  /* bottom: 0; */
+  /* right: 0; */
+  top: 140px;
+  height: 110px;
+  width: 730px;
+}
+#loadinggif
+{
+  left : 50%;
+  top : 50%;
+  position : absolute;
+  z-index : 101;
+  width : 32px;
+  height : 32px;
+  margin-left : -16px;
+  margin-top : -16px;
 }
 
 .site-footer{
