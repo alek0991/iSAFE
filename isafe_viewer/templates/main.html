@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 function useRandomSampleClick(t){
-	numberOfSamples = document.getElementById("randomSamples");
+	numberOfSamples = document.getElementById("numberOfRandomSamples");
 	dropDown = document.getElementById("randomSamplePopulations");
 	if (t.checked)
 	{
@@ -66,7 +66,7 @@ function rsidSelect(){
 		<div class="menu" id="menu">
 		<form method="post" role="form">
 			<label>Select Population(s):</label>
-			<select class="js-example-basic-multiple" multiple="multiple" style="width: 100%">
+			<select id='populations' class="js-example-basic-multiple" multiple="multiple" style="width: 100%">
 			  <option value="AL">CEU</option>
 			  <option value="NV">EUR</option>
 			  <option value="CA">FIN</option>
@@ -88,7 +88,7 @@ function rsidSelect(){
 	
 		    <div class="input-group">
 		      <span class="input-group-addon">
-		        <input type="radio" name="optionsRadios" id="optionsRadios2" value="gene_name" aria-label="..." onclick="geneNameSelect();">
+		        <input type="radio" name="optionsRadios" id="optionsRadios2" value="geneName" aria-label="..." onclick="geneNameSelect();">
 		        Gene Name
 		      </span>
 		      <input id="geneName" type="text" class="form-control" aria-label="..." disabled>
@@ -119,8 +119,8 @@ function rsidSelect(){
 			  </label>
 			</div>
 			<div class="form-inline" style="margin-bottom: 10px;">
-				<label for="randomSamples">Number of Random Samples:</label>
-				<input type="text" class="form-control" id="randomSamples" disabled>
+				<label for="numberOfRandomSamples">Number of Random Samples:</label>
+				<input type="text" class="form-control" id="numberOfRandomSamples" disabled>
 			</div>
 			<script type="text/javascript">
 			$(document).ready(function() {
@@ -182,7 +182,15 @@ $(function() {
         $.ajax({
             url: '/',
             data: {
-                regionSize: $('#regionSize').val()
+                populations: $('#populations').val(),
+                selectedRadio: $('input[name="optionsRadios"]:checked').val(),
+                position: $('#position').val(),
+                geneName: $('#geneName').val(),
+                rsid: $('#rsid').val(),
+                regionSize: $('#regionSize').val(),
+                useRandomSample: $("#useRandomSample").is(":checked"),
+                numberOfRandomSamples: $("#numberOfRandomSamples").val(),
+                randomSamplePopulations: $("#randomSamplePopulations").val(),
             },
             type: 'POST',
             beforeSend: function() {
