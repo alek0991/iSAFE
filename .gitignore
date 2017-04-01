@@ -1,6 +1,9 @@
 #################
 ## Eclipse
 #################
+isafe_viewer/static/results/*
+!isafe_viewer/static/results/PLACE_HOLDER
+
 ## Ali
 .fuse_hidden*
 *.sh
