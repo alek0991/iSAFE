@@ -1,3 +1,5 @@
+from populations import get_superpopulations, get_subpopulations
+
 from flask import Flask, render_template, request, jsonify
 import os
 import time
@@ -57,4 +59,6 @@ def main():
         except Exception as exp:
             return jsonify(errors=exp.args, has_errors=True)
     else:
-        return render_template('main.html')
+        subpopulations = get_subpopulations()
+        superpopulations = get_superpopulations()
+        return render_template('main.html', subpopulations=subpopulations, superpopulations=superpopulations)

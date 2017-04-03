@@ -67,10 +67,9 @@ function rsidSelect(){
 		<form method="post" role="form">
 			<label>Select Population(s):</label>
 			<select id='populations' class="js-example-basic-multiple" multiple="multiple" style="width: 100%">
-			  <option value="AL">CEU</option>
-			  <option value="NV">EUR</option>
-			  <option value="CA">FIN</option>
-			  <option value="WY">AFR</option>
+				{% for pop in subpopulations %}
+				  <option value="{{pop}}">{{pop}}</option>
+				{% endfor %}
 			</select>
 			<script type="text/javascript">
 			$(".js-example-basic-multiple").select2();
@@ -132,12 +131,14 @@ function rsidSelect(){
 				  <option value="ALL">ALL</option>
 				</optgroup>
 				<optgroup label="Super Population">
-				  <option value="EUR">EUR</option>
-				  <option value="SAS">SAS</option>
-				  <option value="AFR">AFR</option>
+				{% for pop in superpopulations %}
+				  <option value="{{pop}}">{{pop}}</option>
+				{% endfor %}
 				</optgroup>
 				<optgroup label="Subpopulation">
-				  <option value="FIN">FIN</option>
+				{% for pop in subpopulations %}
+				  <option value="{{pop}}">{{pop}}</option>
+				{% endfor %}
 				</optgroup>
 			</select>
 			<div class="menu-divider"></div>
