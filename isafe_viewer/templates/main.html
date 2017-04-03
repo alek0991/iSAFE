@@ -175,11 +175,11 @@ function rsidSelect(){
 			Some useful notes on how the diagrams are generated.
 			</p>
 			<div style="text-align:center;">
-				<img id="firstPlot" src="/static/results/iSAFE.png" alt="first plot">
+				<img id="firstPlot" src="" alt="first plot">
 				Short description of the first plot
 			</div>
 			<div style="text-align:center;">
-				<img id="secondPlot" src="/static/results/freq.png" alt="second plot">
+				<img id="secondPlot" src="" alt="second plot">
 				Short description of the second plot
 			</div>
 		</div>
@@ -240,6 +240,8 @@ $(function() {
 				{
 					$("#errorMessage").hide();
 					$("#introduction").hide();
+					$("#firstPlot").attr("src", response.img_url_1);
+					$("#secondPlot").attr("src", response.img_url_2);
 					$("#result").show();
 				}
             },

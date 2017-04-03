@@ -5,8 +5,8 @@ import time
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+RESULT_FOLDER = os.path.join(APP_ROOT, 'static/results')
+app.config['RESULT_FOLDER'] = RESULT_FOLDER
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -50,7 +50,10 @@ def main():
                 number_of_random_samples = int(request.form['numberOfRandomSamples'])
                 random_sample_population = request.form['randomSamplePopulations']
 
-            return jsonify(img_url_1='something.jpg', img_url_2='something2.jpg', has_errors=False)
+            # call a function with the above variable as parameters
+            img_url_1 = 'static/results/' + 'freq.png'
+            img_url_2 = 'static/results/' + 'iSAFE.png'
+            return jsonify(img_url_1=img_url_1, img_url_2=img_url_2, has_errors=False)
         except Exception as exp:
             return jsonify(errors=exp.args, has_errors=True)
     else:
