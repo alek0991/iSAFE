@@ -22,16 +22,16 @@
 
 <script type="text/javascript">
 function useRandomSampleClick(t){
-	numberOfSamples = document.getElementById("numberOfRandomSamples");
+	percentageOfSamples = document.getElementById("percentageOfRandomSamples");
 	dropDown = document.getElementById("randomSamplePopulations");
 	if (t.checked)
 	{
-		numberOfSamples.disabled = false;
+		percentageOfSamples.disabled = false;
 		dropDown.disabled = false;
 	}
 	else
 	{
-		numberOfSamples.disabled = true;
+		percentageOfSamples.disabled = true;
 		dropDown.disabled = true;
 	}
 }
@@ -118,8 +118,8 @@ function rsidSelect(){
 			  </label>
 			</div>
 			<div class="form-inline" style="margin-bottom: 10px;">
-				<label for="numberOfRandomSamples">Random Samples Percentage:</label>
-				<input type="text" class="form-control" id="numberOfRandomSamples" value="10">
+				<label for="percentageOfRandomSamples">Random Samples Percentage:</label>
+				<input type="text" class="form-control" id="percentageOfRandomSamples" value="10">
 			</div>
 			<script type="text/javascript">
 			$(document).ready(function() {
@@ -208,7 +208,7 @@ $(function() {
                 rsid: $('#rsid').val(),
                 regionSize: $('#regionSize').val(),
                 useRandomSample: $("#useRandomSample").is(":checked"),
-                numberOfRandomSamples: $("#numberOfRandomSamples").val(),
+                percentageOfRandomSamples: $("#percentageOfRandomSamples").val(),
                 randomSamplePopulations: $("#randomSamplePopulations").val(),
             },
             type: 'POST',

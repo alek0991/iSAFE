@@ -43,13 +43,13 @@ def main():
             region_size = int(request.form['regionSize'])
 
             use_random_samples = False
-            number_of_random_samples = 0
+            percentage_of_random_samples = 0
             random_sample_population = None
             if request.form['useRandomSample'] == 'true':
                 use_random_samples = True
-                if not request.form['numberOfRandomSamples'].isdigit():
-                    raise Exception('Error: Please specify the number of random samples')
-                number_of_random_samples = int(request.form['numberOfRandomSamples'])
+                if not request.form['percentageOfRandomSamples'].isdigit():
+                    raise Exception('Error: Please specify the percentage of random samples')
+                percentage_of_random_samples = int(request.form['percentageOfRandomSamples'])
                 random_sample_population = request.form['randomSamplePopulations']
 
             # call a function with the above variable as parameters
