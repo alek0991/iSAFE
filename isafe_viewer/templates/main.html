@@ -119,16 +119,16 @@ function rsidSelect(){
 			</div>
 			<div class="form-inline" style="margin-bottom: 10px;">
 				<label for="percentageOfRandomSamples">Random Samples Percentage:</label>
-				<input type="text" class="form-control" id="percentageOfRandomSamples" value="10">
+				<input type="text" class="form-control" style="width: 54px;" id="percentageOfRandomSamples" value="10">
 			</div>
 			<script type="text/javascript">
 			$(document).ready(function() {
-			  $(".js-example-basic-single").select2();
+			  $(".js-example-basic-multiple").select2();
 			});
 			</script>
-			<select class="js-example-basic-single" style="width: 100%" id="randomSamplePopulations">
+			<select class="js-example-basic-multiple" multiple="multiple" style="width: 100%" id="randomSamplePopulations">
 				<optgroup label="All">
-				  <option value="ALL">ALL</option>
+				  <option value="ALL" selected="selected">ALL</option>
 				</optgroup>
 				<optgroup label="Super Population">
 				{% for pop in superpopulations %}
