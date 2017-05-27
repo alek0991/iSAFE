@@ -1,0 +1,74 @@
+usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
+                [--vcf-cont VCF_CONT] [--sample-case SAMPLE_CASE]
+                [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION]
+                [--MaxRegionSize MAXREGIONSIZE] [--MaxGapSize MAXGAPSIZE]
+                [--window WINDOW] [--step STEP] [--topk TOPK]
+                [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
+                [--RandomSampleRate RANDOMSAMPLERATE] [--ForceRandomSample]
+                [--IgnoreGaps] [--StatusOff] [--OutputPsi]
+
+====================================================================
+iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
+====================================================================
+Source code can be found at: <https://github.com/alek0991/iSAFE>
+iSAFE v0.0.0
+--------------------------------------------------------------------
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --format FORMAT, -f FORMAT
+                        <string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).
+                        NOTE 1: vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
+                        NOTE 2: When input format is vcf, Ancestral Allele file (--AA) must be given.
+                        NOTE 3: Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.
+                        NOTE 4: When the input format is hap, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, 
+                        and the selection is ongoing (favored mutation is not fixed).
+                        Default: vcf
+  --input INPUT, -i INPUT
+                        <string>: Path to input.
+  --output OUTPUT, -o OUTPUT
+                        <string>: Path to output.
+                        NOTE 1: iSAFE generates <OUTPUT>.iSAFE.out
+                        NOTE 2: When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out
+  --vcf-cont VCF_CONT   <string>: Path to the phased control population in .vcf or .vcf.gz format.
+  --sample-case SAMPLE_CASE
+                        <string>: Path to the samples file of the case population in .sample format (see the manual for details)
+  --sample-cont SAMPLE_CONT
+                        <string>: Path to the samples file of the control populations in .sample format (see the manual for details)
+  --AA AA               <string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format (see the manual for details)
+  --region REGION       <chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.
+                        Examples, 2:10000000-15000000 or 2:10,000,000-15,000,000. 
+                        NOTE 1: The <chr> is dumped when the input is --hap. 
+                        NOTE 2: <chr> format (e.g. chr2 or 2) must be consistent with vcf files.
+  --MaxRegionSize MAXREGIONSIZE
+                        <int>: Maximum region size in bp.
+                        Default: 6000000
+  --MaxGapSize MAXGAPSIZE
+                        <int>: Maximum gap size in bp.
+                        Default: 10000
+  --window WINDOW       <int>: Sliding window size in polymorphic sites.
+                        Default: 300
+  --step STEP           <int>: Step size of sliding window in polymorphic sites.
+                        Default: 150
+  --topk TOPK           <int>: Rank of SNPs used for learning window weights (alpha).
+                        Default: 1
+  --MaxRank MAXRANK     <int>: Ignore SNPs with rank higher than MAXRANK.
+                        NOTE: For considering all SNPs set --MaxRank > --window (Default: 300).
+                        Default: 15
+  --MaxFreq MAXFREQ     <float>: Ignore SNPs with frequency higher than MAXFreq.
+                        Default: 0.95
+  --RandomSampleRate RANDOMSAMPLERATE
+                        <float>: Portion of added random samples.
+                        NOTE 1: RandomSampleRate = RandomSamples/(RandomSamples+CaseSamples).
+                        NOTE 2: Must be non-negative and less than 1.
+                        Default: 0.1
+  --ForceRandomSample, -FRS
+                        <bool>: Set this flag to force the iSAFE to use random samples even when MDDAF does not suggest.
+                        NOTE: --vcf-cont must be provided.
+                        Default: false
+  --IgnoreGaps, -IG     <bool>: Set this flag to ignore gaps.
+                        Default: false
+  --StatusOff, -SO      <bool>: Set this flag to turn off printing status.
+                        Default: false
+  --OutputPsi, -Psi     <bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.
+                        Default: false
