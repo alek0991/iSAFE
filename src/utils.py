@@ -16,3 +16,10 @@ def drop_duplicates(snp_matrix, DropDuplicates):
             warning_text = "%i duplicated ID's (%i distinct ID's) found. You can drop duplicates by setting the flag --DropDuplicates." % (
             df_drop['CopyCount'].sum(), df_drop.shape[0])
             warnings.warn(warning_text)
+
+
+def parse_region(r):
+    chrom = r.split(":")[0]
+    region_start = r.split(":")[1].split('-')[0]
+    region_end = r.split(":")[1].split('-')[1]
+    return chrom, int(region_start), int(region_end)
