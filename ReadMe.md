@@ -27,7 +27,7 @@ $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap
  
 Demo: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
-Data Requirements
+Data Requirements:
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
     - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
     - unzip the files 
@@ -35,9 +35,11 @@ Data Requirements
     - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
     - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing   
     - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
+
+Run:
 ```sh
 $ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
-* 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
-* Favored mutation Position is 2,500,000
+* 5Mbp region around LCT/MCM6 gene in FIN population. 
+* [Putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) Position is 136,608,646 (GRCh37/hg19).
 
