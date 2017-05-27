@@ -98,8 +98,6 @@ def run():
         if args.region is not None:
             I = (snp_matrix.index>=region_start) & (snp_matrix.index<=region_end)
             snp_matrix=snp_matrix.loc[I]
-    if status:
-        print "%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1])
     POS = np.asarray(snp_matrix.index)
     total_window_size = POS.max() - POS.min()
     dp = np.diff(POS)
@@ -116,6 +114,8 @@ def run():
                 warnings.warn("Warning: There is %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
     f = snp_matrix.mean(1)
     snp_matrix = snp_matrix.loc[((1 - f) * f) > 0]
+    if status:
+        print "%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1])
     obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
     obj_isafe.fire(status=status)
     df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})

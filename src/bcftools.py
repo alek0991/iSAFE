@@ -117,13 +117,13 @@ def get_AA_df(AA_file, df):
 
 def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=None, sample_case=None, sample_cont=None,RandomSampleRate=0.1,ForceRandomSample=False, status=False):
     if sample_case is not None:
-        case_IDs = pd.read_csv(sample_case, header=None, comment='#').rename(columns={0: "pop", 1: "sample"})
+        case_IDs = pd.read_csv(sample_case, sep='\t', header=None, comment='#').rename(columns={0: "pop", 1: "sample"})
         case_IDs["group"] = 'case'
     else:
         case_IDs = None
 
     if sample_cont is not None:
-        cont_IDs = pd.read_csv(sample_cont, header=None, comment='#').rename(columns={0: "pop", 1: "sample"})
+        cont_IDs = pd.read_csv(sample_cont, sep='\t', header=None, comment='#').rename(columns={0: "pop", 1: "sample"})
         cont_IDs["group"] = 'cont'
     else:
         cont_IDs = None
