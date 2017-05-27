@@ -29,10 +29,10 @@ Demo: vcf format
 ===========
 Requirements
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
-    -  GRCh37/hg19 [download](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
+    - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
     - unzip the files 
 * Download 1000 Genome Project phased ```vcf``` files:
-    - GRCh37/hg19 [download](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
+    - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
     - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing   
     - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 ```sh
