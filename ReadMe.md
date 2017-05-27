@@ -1,6 +1,3 @@
-[![N|Solid](http://www.taijiwang.org/img/work-in-progress.jpg)](https://github.com/alek0991/iSAFE)
-==========
-
 iSAFE: **i**ntegrated **S**election of **A**llele **F**avored by **E**volution
 ==========
 
