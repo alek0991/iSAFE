@@ -25,7 +25,7 @@ $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
 * Favored mutation Position is 2,500,000
  
-Demo: vcf or vcf.gz format
+Demo: vcf format
 ===========
 Requirements
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
