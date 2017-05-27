@@ -13,7 +13,7 @@ Requirements
 bcftools = "bcftools"
 ```
 
-[Help](https://github.com/alek0991/iSAFE/blob/master/help.txt)
+EXECUTION:
 ===========
 Use the following command to see all the available options in iSAFE.
  
