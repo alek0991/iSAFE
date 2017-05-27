@@ -10,5 +10,5 @@ iSAFE requires ```Python2.7```.The following python packages are required:
 Run a demo
 ===========
 ```sh
-$ python2.7 ./src/isafe.py ./example/demo.txt ./example/demo
+$ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
