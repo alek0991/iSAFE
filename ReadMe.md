@@ -22,7 +22,7 @@ $ python2.7 ./src/isafe.py --help
 ```
 This information is also available from [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
-Demo: [hap format](https://github.com/alek0991/iSAFE/blob/master/example/hap/ReadMe.md)
+Demo 1: [hap format](https://github.com/alek0991/iSAFE/blob/master/example/hap/ReadMe.md)
 ===========
 ```sh
 $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
@@ -30,7 +30,7 @@ $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
 * Position of the favored mutation is 2,500,000
  
-Demo: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
+Demo 2: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
 Data Requirements:
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
