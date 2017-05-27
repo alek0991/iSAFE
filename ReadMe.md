@@ -23,7 +23,7 @@ Demo: [hap format](https://github.com/alek0991/iSAFE/blob/master/example/hap/Rea
 $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
-* Favored mutation Position is 2,500,000
+* Position of the favored mutation is 2,500,000
  
 Demo: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
@@ -41,5 +41,5 @@ Run:
 $ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
 * 5Mbp region around LCT/MCM6 gene in FIN population. 
-* [Putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) Position is 136,608,646 (GRCh37/hg19).
+* Position of the [Putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is 136,608,646 (GRCh37/hg19).
 
