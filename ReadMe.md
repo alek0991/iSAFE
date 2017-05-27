@@ -11,7 +11,7 @@ Requirements
 - ```pandas``` version 0.18.0 or above
 2. ```bcftools``` version 1.4.1
 - Please follow the [bcftools installation guideline](http://www.htslib.org/download/).
-- iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your $PATH. Otherwise, you have to change the following line in ```./src/bcftools.py``` file to the path to the bcftools binary file: 
+- iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your $PATH. Otherwise, you have to change the following line in ```./src/bcftools.py``` to the bcftools binary file path: 
 ```sh
 bcftools = "bcftools"
 ```
