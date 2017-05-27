@@ -27,7 +27,7 @@ $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap
  
 Demo: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
-Requirements
+Data Requirements
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
     - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
     - unzip the files 
