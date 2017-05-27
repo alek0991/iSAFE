@@ -24,7 +24,7 @@ This information is also provided in [./help.txt](https://github.com/alek0991/iS
 
 Demo 1: [hap format](https://github.com/alek0991/iSAFE/blob/master/hap_format.md)
 ===========
-```
+```sh
 python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
@@ -42,7 +42,7 @@ Data Requirements:
     - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 Run:
-```
+```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
 * 5Mbp region around LCT/MCM6 gene in FIN population. 
