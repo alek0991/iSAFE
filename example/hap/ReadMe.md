@@ -3,6 +3,7 @@ hap format
 A .hap file organizes variant data with rows representing a single haploid copy from an individual and
 columns representing consecutive loci delimited by whitespace. For example,
 
+Example
 ==========
 | Position(bp) | Haplotype 1A | Haplotype 1B | Haplotype 2A | Haplotype 2B | ... |
 |:----------:|:---------:|:---------:|:---------:|:---------:|:--------------------:|
