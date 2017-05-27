@@ -9,9 +9,9 @@ of mutations.
 
 Example
 ==========
-| Position(bp) | Haplotype 1A | Haplotype 1B | Haplotype 2A | Haplotype 2B | ... |
+| #Position(bp) | Haplotype 1A | Haplotype 1B | Haplotype 2A | Haplotype 2B | ... |
 |:----------:|:---------:|:---------:|:---------:|:---------:|:--------------------:|
-| 291 |    1    |    1    |    0    |    1    |    ...    |
+ 291 |    1    |    1    |    0    |    1    |    ...    |
 | 626 |    0    |    0    |    0    |    1    |    ...    |
 | 721 |    0    |    1    |    0    |    0    |    ...    |
 | 1208 |    1    |    1    |    0    |    0    |    ...    |
