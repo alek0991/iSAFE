@@ -90,8 +90,6 @@ def run():
                                                             cont_vcf=args.vcf_cont, sample_case=args.sample_case, sample_cont=args.sample_cont,
                                                             RandomSampleRate=args.RandomSampleRate,
                                                             ForceRandomSample=args.ForceRandomSample, status=status)
-        f = df.mean(1)
-        df=df.loc[((1-f)*f)>0]
         snp_matrix = pd.DataFrame(df.values)
         snp_matrix.index = df.index.get_level_values("POS")
     else:
@@ -116,6 +114,8 @@ def run():
         else:
             if status:
                 warnings.warn("Warning: There is %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
+    f = snp_matrix.mean(1)
+    snp_matrix = snp_matrix.loc[((1 - f) * f) > 0]
     obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
     obj_isafe.fire(status=status)
     df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})

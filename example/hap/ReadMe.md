@@ -1,7 +1,10 @@
 hap format
 ==========
-A .hap file organizes variant data with rows representing a single haploid copy from an individual and
-columns representing consecutive loci delimited by whitespace. For example,
+A .hap file organizes SNP matrix of a population with phased haplotypes in a genomic region.
+We assume that all sites are biallelic and polymorphic in the sample. Thus, our input is in
+the form of a binary SNP matrix with each row corresponding to a haplotype and each column
+to a mutation, and entries corresponding to the allelic state, with 0 denoting the ancestral
+allele, and 1 denoting the derived allele.
 
 Example
 ==========
