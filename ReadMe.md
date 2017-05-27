@@ -20,7 +20,7 @@ Use the following command to see all the available options in iSAFE.
 ```sh
 $ python2.7 ./src/isafe.py --help
 ```
-This information is also available from [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
+This information is also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
 Demo 1: [hap format](https://github.com/alek0991/iSAFE/blob/master/hap_format.md)
 ===========
