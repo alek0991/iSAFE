@@ -30,6 +30,7 @@ Demo: vcf format
 Requirements
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
     -  see [GRCh37](ftp://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
+    - [msms](http://www.mabs.at/ewing/msms/index.shtml)
     - unzip the files 
 * Download 1000 Genome Project phased ```vcf``` files:
 - see [GRCh37](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
