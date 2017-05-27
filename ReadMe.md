@@ -23,5 +23,5 @@ Demo
 ```sh
 $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
-* 5Mbp simulated region
+* 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
 * Favored mutation Position is 2,500,000
