@@ -1,10 +1,5 @@
 hap format
 ==========
-* TAB separated  
-* No Header  
-* Comment by #.  
-.hap  
-==========  
 | Position(bp) | Haplotype 1A | Haplotype 1B | Haplotype 2A | Haplotype 2B | ... |
 |:----------:|:---------:|:---------:|:---------:|:---------:|:--------------------:|
 | 291 |    1    |    1    |    0    |    1    |    ...    |
