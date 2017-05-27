@@ -13,6 +13,14 @@ Requirements
 bcftools = "bcftools"
 ```
 
+[Help](https://github.com/alek0991/iSAFE/blob/master/help.txt)
+===========
+Use the following command to see all the available options in iSAFE.
+ 
+```sh
+$ python2.7 ./src/isafe.py --help
+```
+This information is also available from [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
 Demo: [hap format](https://github.com/alek0991/iSAFE/blob/master/example/hap/ReadMe.md)
 ===========
