@@ -7,8 +7,9 @@ hap format
 | 721 |    0    |    1    |    0    |    0    |    ...    |
 | 1208 |    1    |    1    |    0    |    0    |    ...    |
 | ... |    ...    |    ...    |    ...    |    ...    |    ...    |    ...    |
+
+Notes
 ==========
 * TAB separated  
 * No Header  
 * Comment by #.  
-.hap  
