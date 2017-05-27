@@ -34,10 +34,10 @@ Demo 2: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
 Data Requirements:
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
-    - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
+    - [Ancestral Alleles Data](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/), GRCh37/hg19
     - unzip the files 
 * Download 1000 Genome Project phased ```vcf``` files:
-    - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
+    - [Phased vcf Data](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/), GRCh37/hg19
     - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing.   
     - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
