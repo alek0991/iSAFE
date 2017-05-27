@@ -27,18 +27,18 @@ Demo 1: [hap format](https://github.com/alek0991/iSAFE/blob/master/hap_format.md
 ```sh
 python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
-* 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml)
-* Position of the favored mutation is 2,500,000
+* 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml).
+* Position of the favored mutation is 2,500,000.
  
 Demo 2: [vcf format](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 ===========
 Data Requirements:
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
-    - [Ancestral Alleles Data](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/), GRCh37/hg19
-    - unzip the files 
+    - [Ancestral Alleles Data](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/), GRCh37/hg19.
+    - unzip the files.
 * Download 1000 Genome Project phased ```vcf``` files:
-    - [Phased vcf Data](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/), GRCh37/hg19
-    - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing.   
+    - [Phased vcf Data](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/), GRCh37/hg19.
+    - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing.
     - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 Run:
