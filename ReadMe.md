@@ -17,7 +17,7 @@ bcftools = "bcftools"
 ```
 
 
-Demo: hap format
+Demo: [hap format](https://github.com/alek0991/iSAFE/blob/master/example/hap/ReadMe.md)
 ===========
 ```sh
 $ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
