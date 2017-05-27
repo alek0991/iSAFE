@@ -29,13 +29,12 @@ Demo: vcf format
 ===========
 Requirements
 *  Download Homo-Sapiens ```Ancestral Allele``` files:
-    -  see [GRCh37](ftp://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
-    - [msms](http://www.mabs.at/ewing/msms/index.shtml)
+    -  GRCh37/hg19 [download](ftp://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
     - unzip the files 
 * Download 1000 Genome Project phased ```vcf``` files:
-- see [GRCh37](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
-- Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing   
-- In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
+    - GRCh37/hg19 [download](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
+    - Better to use compressed vcf files ```.vcf.gz``` for faster pre-processing   
+    - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 ```sh
 $ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont ./example/vcf/chr2_1000GP3.vcf.gz --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
