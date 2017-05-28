@@ -12,7 +12,7 @@ sites are biallelic and  polymorphic in the sample.
 Thus, our input is in the form of a binary 
 SNP matrix with each column corresponding to a haplotype and each row to a 
 mutation, and entries corresponding to the allelic state, with 0 denoting the
-ancestral allele, and 1 denoting the derived allele.
+ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats.
 
 Output:
 ==========
