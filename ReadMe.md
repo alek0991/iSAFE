@@ -5,6 +5,17 @@ been actively developed, but mostly do not identify the specific mutation favore
 sweep. We present a method, iSAFE that uses population genetics signals and a boosting
 approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp.
 
+Input & Output:
+==========
+Consider a sample of phased haplotypes in a genomic region. We assume that all 
+sites are biallelic and  polymorphic in the sample. 
+Thus, our input is in the form of a binary 
+SNP matrix with each row corresponding to a haplotype and each column to a 
+mutation, and entries corresponding to the allelic state, with 0 denoting the
+ancestral allele, and 1 denoting the derived allele. The output is a 
+non-negative iSAFE-score for each mutation, according to its 
+likelihood of being the favored variant of the selective sweep.
+
 Requirements
 ==========
 1. ```Python2.7```. Following python packages are required:
