@@ -54,7 +54,7 @@ Software Requirements
     ```sh
     sudo pip install numpy pandas;pip show numpy pandas
     ```
-2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/), or you can use the following alternative to install the bcftools:
+2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/). You can also try the following alternative way to install bcftools:
     ```sh
     sudo apt-get install bcftools;bcftools
     ```
