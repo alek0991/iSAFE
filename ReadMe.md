@@ -11,22 +11,14 @@ Software Requirements
 1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
     -   ```pandas``` version 0.18 or above
-    ```sh
-    sudo pip install numpy pandas;pip show numpy pandas
-    ```
-2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/). You can also try the following alternative way to install bcftools:
-    ```sh
-    sudo apt-get install bcftools;bcftools
-    ```
-    - In case you follow the [bcftools installation guideline](http://www.htslib.org/download/),
-     make sure you do all the steps. Because iSAFE assumes the bcftools 
-     binary file is installed to a bin subdirectory that is added 
-     to your ```$PATH```. Otherwise, you have to change the following 
+2. ```bcftools``` version 1.2 or above.
+    - Follow the [bcftools installation guideline](http://www.htslib.org/download/).
+    - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added 
+     to your ```$PATH```; otherwise, you have to change the following 
      line in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```sh
     bcftools = "bcftools"
     ```
-
 Data Requirements
 ==========
 *  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
