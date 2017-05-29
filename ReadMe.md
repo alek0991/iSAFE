@@ -14,6 +14,17 @@ SNP matrix with each column corresponding to a haplotype and each row to a
 mutation, and entries corresponding to the allelic state, with 0 denoting the
 ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE accepts VCF and indexed bgzipped VCF (.vcf.gz plus .vcf.gz.tbi) with the file type detected
 automatically.
+* [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format: ```--format hap``` or ```-f hap```
+    - Input with hap format is not allowed with any of these: ```--vcf-cont```, ```--sample-case```, ```--sample-cont```, ```--AA```.
+    - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
+* [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
+    - Only phased vcf files are accepted.
+    - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
+    - When input format is vcf, [Ancestral Allele file](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/) (```--AA```) must be given.
+    - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples. 
+    
+
+
 
 Output:
 ==========
