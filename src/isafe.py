@@ -81,7 +81,7 @@ def run():
     parser.add_argument('--step', type=int, help='<int>: Step size of sliding window in polymorphic sites.\nDefault: 150', required=False, default=150)
     parser.add_argument('--topk', type=int, help='<int>: Rank of SNPs used for learning window weights (alpha).\nDefault: 1', required=False, default=1)
     parser.add_argument('--MaxRank', type=int, help='<int>: Ignore SNPs with rank higher than MAXRANK.'
-                                                    '\n  * For considering all SNPs set --MaxRank > --window (Default: 300).'
+                                                    '\n  * For considering all SNPs set --MaxRank > --window.'
                                                     '\n  * The higher the --MaxRank, the higher the computation time.'
                                                     '\nDefault: 15', required=False, default=15)
     parser.add_argument('--MaxFreq', type=float, help='<float>: Ignore SNPs with frequency higher than MaxFreq.\nDefault: 0.95',
