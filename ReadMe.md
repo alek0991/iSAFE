@@ -50,7 +50,6 @@ Software Requirements
 1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
     -   ```pandas``` version 0.18 or above
-    
     ```sh
     sudo pip install numpy pandas;pip show numpy pandas
     ```
