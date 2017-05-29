@@ -5,6 +5,42 @@ been actively developed, but mostly do not identify the specific mutation favore
 sweep. We present a method, iSAFE that uses population genetics signals and a boosting
 approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp.
 
+Software Requirements
+==========
+1. ```Python2.7``` and the following packages are required:
+    -   ```numpy``` version 1.9 or above 
+    -   ```pandas``` version 0.18 or above
+    ```sh
+    sudo pip install numpy pandas;pip show numpy pandas
+    ```
+2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/). You can also try the following alternative way to install bcftools:
+    ```sh
+    sudo apt-get install bcftools;bcftools
+    ```
+    - In case you follow the [bcftools installation guideline](http://www.htslib.org/download/),
+     make sure you do all the steps. Because iSAFE assumes the bcftools 
+     binary file is installed to a bin subdirectory that is added 
+     to your ```$PATH```. Otherwise, you have to change the following 
+     line in ```./src/bcftools.py``` to the bcftools binary file path: 
+    ```sh
+    bcftools = "bcftools"
+    ```
+
+Data Requirements
+==========
+*  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
+    - Download links: 
+        - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
+        - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
+    - You need to unzip the files.
+* The 1000 Genome Project phased vcf files can be used as ```--input``` or ```--vcf-cont```:
+    - Download links: 
+        - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
+        - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
+    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
+    - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
+    - In case you are using  bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
+
 Execution:
 ===========
 Use the following command to see all the available options in iSAFE.
@@ -44,42 +80,6 @@ Output:
 ==========
 The output is a non-negative iSAFE-score for each mutation, according to its 
 likelihood of being the favored variant of the selective sweep.
-
-Software Requirements
-==========
-1. ```Python2.7``` and the following packages are required:
-    -   ```numpy``` version 1.9 or above 
-    -   ```pandas``` version 0.18 or above
-    ```sh
-    sudo pip install numpy pandas;pip show numpy pandas
-    ```
-2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/). You can also try the following alternative way to install bcftools:
-    ```sh
-    sudo apt-get install bcftools;bcftools
-    ```
-    - In case you follow the [bcftools installation guideline](http://www.htslib.org/download/),
-     make sure you do all the steps. Because iSAFE assumes the bcftools 
-     binary file is installed to a bin subdirectory that is added 
-     to your ```$PATH```. Otherwise, you have to change the following 
-     line in ```./src/bcftools.py``` to the bcftools binary file path: 
-    ```sh
-    bcftools = "bcftools"
-    ```
-Data Requirements
-==========
-*  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
-    - Download links: 
-        - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
-        - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
-    - You need to unzip the files.
-* The 1000 Genome Project phased vcf files can be used as ```--input``` or ```--vcf-cont```:
-    - Download links: 
-        - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
-        - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
-    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
-    - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - In case you are using  bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
-
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
 ===========
