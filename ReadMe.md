@@ -55,7 +55,6 @@ Software Requirements
     pip show numpy pandas
     ```
 2. ```bcftools``` version 1.2 or above.
-    Install the package:
     - Please follow the [bcftools installation guideline](http://www.htslib.org/download/), or you can use the following command:
     ```sh
     sudo apt-get install bcftools
