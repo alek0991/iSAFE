@@ -16,7 +16,7 @@ def run():
     # optional arguments
     parser.add_argument('--format', '-f',help='<string>: Input format. '
                                               '<FORMAT> must be either hap or vcf (see the manual for more details).'
-                                              '\niSAFE can handle to types of inputs:'
+                                              '\niSAFE can handle to types of inputs (phased haplotypes are required):'
                                               '\n  vcf format: --format vcf or -f vcf'
                                               '\n    * vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
                                               '\n    * When input format is vcf, Ancestral Allele file (--AA) must be given.'
