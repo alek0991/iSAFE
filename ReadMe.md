@@ -94,21 +94,20 @@ Scenario 1. All the samples of the ```--input``` vcf file as the case population
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file>
 ```
 
-* This command apply .
-
 Scenario 2. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population:
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in FIN population of 1000GP as the case population.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --sample-case ./example/vcf/case.sample
 ```
 
 Scenario 3. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population and a subset of samples (```--sample-cont```) of the ```--vcf-cont``` vcf file as the control population:
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
 
 * ```--input``` and ```--vcf-cont``` can point to the same vcf file or different ones. In case they are the same, ```--sampe-case``` and ```--sample-cont``` are mandatory.
-* These examples apply iSAFE on 5Mbp region around LCT/MCM6 gene in FIN population. 
-* Position of the [putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is 136,608,646 (GRCh37/hg19).
+* Position of the [putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) in the FIN population is 136,608,646 (GRCh37/hg19).
 * Replace the text in each ```<>``` with the required file path.
