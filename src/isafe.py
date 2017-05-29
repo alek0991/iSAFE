@@ -34,7 +34,11 @@ def run():
                                            '\n  * This is optional but recommended for capturing fixed sweeps.'
                                            '\n  * This option is only available with --format vcf.'
                                            '\n  * You can choose a subset of samples in this file by using --sample-cont option,\n    otherwise all the samples in this file are cosidered as control population.'
-                                           '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).', required=False)
+                                           '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).'
+                                           '\n  * You can (you don\'t have to) use 1000 Genome Project populations as control.'
+                                           '\n    - Download link of phased VCF files of 1000GP (GRCh37/hg19): http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/'
+                                           '\n    - Download link of phased VCF files of 1000GP (GRCh38/hg38): http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/'
+                                           '', required=False)
     parser.add_argument('--sample-case', help='<string>: Path to the file containing sample ID\'s of the case population.'
                                               '\n  * This option is only available in --format vcf.'
                                               '\n  * When this option is not used all the samples in the --input are considered as the case samples.'
