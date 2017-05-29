@@ -78,7 +78,7 @@ Data Requirements
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
     - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
     - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - In case you are using  bgzipped vcf file ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
+    - In case you are using  bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
