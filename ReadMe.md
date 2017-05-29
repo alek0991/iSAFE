@@ -12,7 +12,7 @@ Use the following command to see all the available options in iSAFE.
 ```sh
 python2.7 ./src/isafe.py --help
 ```
-This information is also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
+These detailed instructions are also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
 
 Input:
