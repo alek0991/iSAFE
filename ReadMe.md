@@ -54,10 +54,10 @@ Data Requirements
         - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
     - You need to unzip the files.
 * The 1000 Genome Project phased vcf files can be used as ```--input``` or ```--vcf-cont```:
-    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
     - Download links: 
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
+    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
     - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
     - In case you are using  bgzipped vcf file ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
