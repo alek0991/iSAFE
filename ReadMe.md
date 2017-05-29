@@ -57,7 +57,11 @@ Software Requirements
     ```sh
     sudo apt-get install bcftools;bcftools
     ```
-    - In case you follow the [bcftools installation guideline](http://www.htslib.org/download/), make sure you do all the steps, because iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your ```$PATH```. Otherwise, you have to change the following line in ```./src/bcftools.py``` to the bcftools binary file path: 
+    - In case you follow the [bcftools installation guideline](http://www.htslib.org/download/),
+     make sure you do all the steps. Because iSAFE assumes the bcftools 
+     binary file is installed to a bin subdirectory that is added 
+     to your ```$PATH```. Otherwise, you have to change the following 
+     line in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```sh
     bcftools = "bcftools"
     ```
