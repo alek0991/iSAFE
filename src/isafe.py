@@ -9,22 +9,23 @@ def run():
     parser = argparse.ArgumentParser(description='===================================================================='
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
-                                                 '\nSource code can be found at: <https://github.com/alek0991/iSAFE>'
+                                                 '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
                                                  '\niSAFE v0.0.0'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
     parser.add_argument('--format', '-f',help='<string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).'
                                               '\niSAFE can handle two types of inputs (phased haplotypes are required):'
-                                              '\n  vcf format: --format vcf or -f vcf'
-                                              '\n    * vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
-                                              '\n    * When input format is vcf, Ancestral Allele file (--AA) must be given.'
-                                              '\n  hap format: --format hap or -f hap'
-                                              '\n    * Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.'
-                                              '\n    * With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file,\n      and the selection is ongoing (the favored mutation is not fixed).'
+                                              '\n  * vcf format: --format vcf or -f vcf'
+                                              '\n    - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
+                                              '\n    - When input format is vcf, Ancestral Allele file (--AA) must be given.'
+                                              '\n  * hap format: --format hap or -f hap'
+                                              '\n    - Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.'
+                                              '\n    - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file,\n      and the selection is ongoing (the favored mutation is not fixed).'
                                               '\nDefault: vcf', required=False, default='vcf')
-    parser.add_argument('--input', '-i',help='<string>: Path to input.', required=True)
-    parser.add_argument('--output', '-o',help='<string>: Path to output.'
+    parser.add_argument('--input', '-i',help='<string>: Path to the input (case population).'
+                                             '\n  * Input positions must be sorted numerically, in increasing order.', required=True)
+    parser.add_argument('--output', '-o',help='<string>: Path to the output(s).'
                                               '\n  * iSAFE generates <OUTPUT>.iSAFE.out'
                                               '\n  * When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out'
                         , required=True)
@@ -56,26 +57,45 @@ def run():
                                      '\n  * Download link (GRCh38/hg38): http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/'
                                      , required=False)
     parser.add_argument('--region', help='<chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.'
-                                         '\nExamples, 2:10000000-15000000 or 2:10,000,000-15,000,000. '
-                                         '\nNOTE 1: The <chr> is dumped when the input is --hap.'
-                                         '\nNOTE 2: <chr> format (e.g. chr2 or 2) must be consistent with vcf files.', required=False)
-
-    parser.add_argument('--MaxRegionSize', type=int, help='<int>: Maximum region size in bp.\nDefault: 6000000', required=False, default=6000000)
-    parser.add_argument('--MaxGapSize', type=int, help='<int>: Maximum gap size in bp.\nDefault: 10000', required=False, default=10e3)
+                                         '\n  * This is required in --format vcf but optional in the --format hap.'
+                                         '\n  * In vcf format, <chr> style (e.g. chr2 or 2) must be consistent with vcf files.'
+                                         '\n  * The <chr> is dumped in --format hap.'
+                                         '\n  * Valid Examples:'
+                                         '\n      2:10000000-15000000'
+                                         '\n      chr2:10000000-15000000'
+                                         '\n      2:10,000,000-15,000,000'
+                                         '\n      chr2:10,000,000-15,000,000'
+                        , required=False)
+    parser.add_argument('--MaxRegionSize', type=int, help='<int>: Maximum region size in bp.'
+                                                          '\n  * Consider the memory (RAM) size when change this parameter.'
+                                                          '\nDefault: 6000000', required=False, default=6000000)
+    parser.add_argument('--MaxGapSize', type=int, help='<int>: Maximum gap size in bp.'
+                                                       '\n  * When there is a gap larger than --MaxGapSize the program raise an error.'
+                                                       '\n  * You can ignore this by setting the --IgnoreGaps flag.'
+                                                       '\nDefault: 10000', required=False, default=10e3)
     parser.add_argument('--window', type=int, help='<int>: Sliding window size in polymorphic sites.\nDefault: 300', required=False, default=300)
     parser.add_argument('--step', type=int, help='<int>: Step size of sliding window in polymorphic sites.\nDefault: 150', required=False, default=150)
     parser.add_argument('--topk', type=int, help='<int>: Rank of SNPs used for learning window weights (alpha).\nDefault: 1', required=False, default=1)
-    parser.add_argument('--MaxRank', type=int, help='<int>: Ignore SNPs with rank higher than MAXRANK.\nNOTE: For considering all SNPs set --MaxRank > --window (Default: 300).\nDefault: 15', required=False, default=15)
-    parser.add_argument('--MaxFreq', type=float, help='<float>: Ignore SNPs with frequency higher than MAXFreq.\nDefault: 0.95',
+    parser.add_argument('--MaxRank', type=int, help='<int>: Ignore SNPs with rank higher than MAXRANK.'
+                                                    '\n  * For considering all SNPs set --MaxRank > --window (Default: 300).'
+                                                    '\n  * The higher the --MaxRank, the higher the computation time.'
+                                                    '\nDefault: 15', required=False, default=15)
+    parser.add_argument('--MaxFreq', type=float, help='<float>: Ignore SNPs with frequency higher than MaxFreq.\nDefault: 0.95',
                         required=False, default=0.95)
     parser.add_argument('--RandomSampleRate', type=float, help='<float>: Portion of added random samples.'
-                                                               '\nNOTE 1: RandomSampleRate = RandomSamples/(RandomSamples+CaseSamples).'
-                                                               '\nNOTE 2: Must be non-negative and less than 1.\nDefault: 0.1',
-                        required=False, default=0.1)
-    parser.add_argument('--ForceRandomSample', '-FRS', help='<bool>: Set this flag to force the iSAFE to use random samples even when MDDAF does not suggest.\nNOTE: --vcf-cont must be provided.\nDefault: false', action='store_true')
+                                                               '\n  * RandomSampleRate = RandomSamples/(RandomSamples+CaseSamples).'
+                                                               '\n  * Must be non-negative and less than 1.\nDefault: 0.1'
+                                                               '\n  * Ignored when --vcf-case is not used.'
+                                                               '\n  * Ignored when MDDAF criterion doesn\'t recommend adding random samples. The option --ForceRandomSample'
+                                                               '\n    can be used to override MDDAF criterion.'
+                        , required=False, default=0.1)
+    parser.add_argument('--ForceRandomSample', '-FRS', help='<bool>: Set this flag to force the iSAFE to use random samples even when MDDAF doesn\'t recommend.'
+                                                            '\n  * --vcf-cont must be provided.'
+                                                            '\nDefault: false', action='store_true')
     parser.add_argument('--IgnoreGaps', '-IG', help='<bool>: Set this flag to ignore gaps.\nDefault: false', action='store_true')
     parser.add_argument('--StatusOff', '-SO', help='<bool>: Set this flag to turn off printing status.\nDefault: false', action='store_true')
-    parser.add_argument('--OutputPsi', '-Psi', help='<bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.\nDefault: false', action='store_true')
+    parser.add_argument('--OutputPsi', '-Psi', help='<bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.'
+                                                    '\nDefault: false', action='store_true')
     args = parser.parse_args()
 
     if (args.format not in ['hap', 'vcf']):
