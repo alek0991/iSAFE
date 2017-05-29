@@ -92,7 +92,7 @@ optional arguments:
   --topk TOPK           <int>: Rank of SNPs used for learning window weights (alpha).
                         Default: 1
   --MaxRank MAXRANK     <int>: Ignore SNPs with rank higher than MAXRANK.
-                          * For considering all SNPs set --MaxRank > --window (Default: 300).
+                          * For considering all SNPs set --MaxRank > --window.
                           * The higher the --MaxRank, the higher the computation time.
                         Default: 15
   --MaxFreq MAXFREQ     <float>: Ignore SNPs with frequency higher than MaxFreq.
