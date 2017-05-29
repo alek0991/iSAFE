@@ -29,12 +29,20 @@ def run():
                         , required=True)
 
     parser.add_argument('--vcf-cont', help='<string>: Path to the phased control population in .vcf or .vcf.gz format.', required=False)
-    parser.add_argument('--sample-case', help='<string>: Path to the samples file of the case population in .sample format (see the manual for details)', required=False)
-    parser.add_argument('--sample-cont', help='<string>: Path to the samples file of the control populations in .sample format (see the manual for details)', required=False)
+    parser.add_argument('--sample-case', help='<string>: Path to the samples file of the case population.'
+                                              '\nNOTE 1: This option is only available in --format vcf.'
+                                              '\nNOTE 2: This file must have two columns, the first one is population and the second column is sample ID\'s used in the --input.'
+                                              '\nNOTE 3: When this option is not used all the samples in the --input are considered as the case samples.'
+                                              '\nNOTE 4 Must use this when case and control populations are in the same vcf file.'
+                                              '\nNOTE 5: This file must be TAB separated, no header, and comments by #.'
+                                              '\nNOTE 6: Population column (first column) can have more than one population name. They are all considered the CASE populations.'
+                                              '\nNOTE 7: You can use whatever name you want for populations, but sample ID\'s must be in --input vcf file', required=False)
+    parser.add_argument('--sample-cont', help='<string>: Path to the samples file of the control populations. These TAB separated file must have two columns, the first one is population name and the second column is sample ID\'s used in the --vcf-cont'
+                                              '\nNOTE: When this option is not used all the samples in the --input is considered as the case samples.', required=False)
     parser.add_argument('--AA', help='<string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format (see the manual for details)', required=False)
     parser.add_argument('--region', help='<chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.'
                                          '\nExamples, 2:10000000-15000000 or 2:10,000,000-15,000,000. '
-                                         '\nNOTE 1: The <chr> is dumped when the input is --hap. '
+                                         '\nNOTE 1: The <chr> is dumped when the input is --hap.'
                                          '\nNOTE 2: <chr> format (e.g. chr2 or 2) must be consistent with vcf files.', required=False)
 
     parser.add_argument('--MaxRegionSize', type=int, help='<int>: Maximum region size in bp.\nDefault: 6000000', required=False, default=6000000)
