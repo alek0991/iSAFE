@@ -82,7 +82,7 @@ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/d
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml).
 * Position of the favored mutation is 2,500,000.
  
-Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
+Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format with control populations
 ===========
 Follow the instructions in the Data Requirements section and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations (GRCh37/hg19).
 
