@@ -14,9 +14,8 @@ def run():
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
-    parser.add_argument('--format', '-f',help='<string>: Input format. '
-                                              '<FORMAT> must be either hap or vcf (see the manual for more details).'
-                                              '\niSAFE can handle to types of inputs (phased haplotypes are required):'
+    parser.add_argument('--format', '-f',help='<string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).'
+                                              '\niSAFE can handle two types of inputs (phased haplotypes are required):'
                                               '\n  vcf format: --format vcf or -f vcf'
                                               '\n    * vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
                                               '\n    * When input format is vcf, Ancestral Allele file (--AA) must be given.'
@@ -26,22 +25,36 @@ def run():
                                               '\nDefault: vcf', required=False, default='vcf')
     parser.add_argument('--input', '-i',help='<string>: Path to input.', required=True)
     parser.add_argument('--output', '-o',help='<string>: Path to output.'
-                                              '\nNOTE 1: iSAFE generates <OUTPUT>.iSAFE.out'
-                                              '\nNOTE 2: When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out'
+                                              '\n  * iSAFE generates <OUTPUT>.iSAFE.out'
+                                              '\n  * When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out'
                         , required=True)
 
-    parser.add_argument('--vcf-cont', help='<string>: Path to the phased control population in .vcf or .vcf.gz format.', required=False)
-    parser.add_argument('--sample-case', help='<string>: Path to the samples file of the case population.'
-                                              '\nNOTE 1: This option is only available in --format vcf.'
-                                              '\nNOTE 2: This file must have two columns, the first one is population and the second column is sample ID\'s used in the --input.'
-                                              '\nNOTE 3: When this option is not used all the samples in the --input are considered as the case samples.'
-                                              '\nNOTE 4 Must use this when case and control populations are in the same vcf file.'
-                                              '\nNOTE 5: This file must be TAB separated, no header, and comments by #.'
-                                              '\nNOTE 6: Population column (first column) can have more than one population name. They are all considered the CASE populations.'
-                                              '\nNOTE 7: You can use whatever name you want for populations, but sample ID\'s must be in --input vcf file', required=False)
-    parser.add_argument('--sample-cont', help='<string>: Path to the samples file of the control populations. These TAB separated file must have two columns, the first one is population name and the second column is sample ID\'s used in the --vcf-cont'
-                                              '\nNOTE: When this option is not used all the samples in the --input is considered as the case samples.', required=False)
-    parser.add_argument('--AA', help='<string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format (see the manual for details)', required=False)
+    parser.add_argument('--vcf-cont', help='<string>: Path to the phased control population in .vcf or .vcf.gz format.'
+                                           '\n  * This is optional but recommended for capturing fixed sweeps.'
+                                           '\n  * This option is only available with --format vcf.'
+                                           '\n  * You can choose a subset of samples in this file by using --sample-cont option,\n    otherwise all the samples in this file are cosidered as control population.'
+                                           '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).', required=False)
+    parser.add_argument('--sample-case', help='<string>: Path to the file containing sample ID\'s of the case population.'
+                                              '\n  * This option is only available in --format vcf.'
+                                              '\n  * When this option is not used all the samples in the --input are considered as the case samples.'
+                                              '\n  * This file must have two columns, the first one is population and the second column\n    is sample ID\'s (must be a subset of ID\'s used in the --input vcf file).'
+                                              '\n  * This file must be TAB separated, no header, and comments by #.'
+                                              '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).'
+                                              '\n  * Population column (first column) can have more than one population name. They are all considered the case populations.'
+                                              '\n  * You can use whatever name you want for populations, but sample ID\'s must be subset of the --input vcf file', required=False)
+    parser.add_argument('--sample-cont', help='<string>: Path to the file containing sample ID\'s of the control population(s).'
+                                              '\n  * This option is only available in --format vcf.'
+                                              '\n  * When this option is not used all the samples in the --vcf-cont are considered as the control samples.'
+                                              '\n  * This file must have two columns, the first one is population and the second column\n    is sample ID\'s (must be a subset of ID\'s used in the --vcf-cont file).'
+                                              '\n  * This file must be TAB separated, no header, and comments by #.'
+                                              '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).'
+                                              '\n  * Population column (first column) can have more than one population name. They are all considered the control populations.'
+                                              '\n  * You can use whatever name you want for populations, but sample ID\'s must be subset of the --vcf-cont file', required=False)
+    parser.add_argument('--AA', help='<string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.'
+                                     '\n  * This is required in --format vcf.'
+                                     '\n  * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/'
+                                     '\n  * Download link (GRCh38/hg38): http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/'
+                                     , required=False)
     parser.add_argument('--region', help='<chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.'
                                          '\nExamples, 2:10000000-15000000 or 2:10,000,000-15,000,000. '
                                          '\nNOTE 1: The <chr> is dumped when the input is --hap.'
