@@ -16,11 +16,13 @@ def run():
     # optional arguments
     parser.add_argument('--format', '-f',help='<string>: Input format. '
                                               '<FORMAT> must be either hap or vcf (see the manual for more details).'
-                                              '\nNOTE 1: vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
-                                              '\nNOTE 2: When input format is vcf, Ancestral Allele file (--AA) must be given.'
-                                              '\nNOTE 3: Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.'
-                                              '\nNOTE 4: When the input format is hap, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, '
-                                              '\nand the selection is ongoing (favored mutation is not fixed).'
+                                              '\niSAFE can handle to types of inputs:'
+                                              '\n  vcf format: --format vcf or -f vcf'
+                                              '\n    * vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
+                                              '\n    * When input format is vcf, Ancestral Allele file (--AA) must be given.'
+                                              '\n  hap format: --format hap or -f hap'
+                                              '\n    * Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.'
+                                              '\n    * With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file,\n      and the selection is ongoing (the favored mutation is not fixed).'
                                               '\nDefault: vcf', required=False, default='vcf')
     parser.add_argument('--input', '-i',help='<string>: Path to input.', required=True)
     parser.add_argument('--output', '-o',help='<string>: Path to output.'

@@ -1,5 +1,5 @@
-iSAFE can handle to types of inputs (The default format is vcf):
-* vcf format: ```--format vcf``` or ```-f vcf```
+iSAFE can handle to types of inputs:
+* vcf format (Default): ```--format vcf``` or ```-f vcf```
     - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
     - When input format is vcf, [Ancestral Allele file](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/) (```--AA```) must be given.
 * hap format: ```--format hap``` or ```-f hap```
