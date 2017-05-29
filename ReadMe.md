@@ -5,6 +5,16 @@ been actively developed, but mostly do not identify the specific mutation favore
 sweep. We present a method, iSAFE that uses population genetics signals and a boosting
 approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp.
 
+EXECUTION:
+===========
+Use the following command to see all the available options in iSAFE.
+ 
+```sh
+python2.7 ./src/isafe.py --help
+```
+This information is also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
+
+
 Input:
 ==========
 Consider a sample of phased haplotypes in a genomic region. We assume that all 
@@ -62,15 +72,6 @@ Data Requirements
     - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
     - In case you are using  bgzipped vcf file ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
-
-EXECUTION:
-===========
-Use the following command to see all the available options in iSAFE.
- 
-```sh
-python2.7 ./src/isafe.py --help
-```
-This information is also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
 ===========
