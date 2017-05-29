@@ -47,7 +47,7 @@ likelihood of being the favored variant of the selective sweep.
 
 Software Requirements
 ==========
-1. ```Python2.7``` and following packages are required:
+1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
     -   ```pandas``` version 0.18 or above
     
