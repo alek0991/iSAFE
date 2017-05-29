@@ -92,4 +92,4 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 ```
 * 5Mbp region around LCT/MCM6 gene in FIN population. 
 * Position of the [putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is 136,608,646 (GRCh37/hg19).
-
+* Replace the text in ```<>``` with the proper file path.
