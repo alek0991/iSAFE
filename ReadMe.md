@@ -57,7 +57,7 @@ Software Requirements
     ```sh
     sudo apt-get install bcftools;bcftools
     ```
-    - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your $PATH. Otherwise, you have to change the following line in ```./src/bcftools.py``` to the bcftools binary file path: 
+    - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your ```$PATH```. Otherwise, you have to change the following line in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```sh
     bcftools = "bcftools"
     ```
