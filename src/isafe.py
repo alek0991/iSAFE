@@ -61,7 +61,7 @@ def run():
         if ((args.vcf_cont is not None)|(args.sample_case is not None)|(args.sample_cont is not None)|(args.AA is not None)):
             parser.error("[--format hap] is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.")
         else:
-            warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (Favored mutation is not fixed).")
+            warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
     if (args.format == 'vcf'):
         if args.AA is None:
             parser.error("--AA must be provided when input format is vcf.")

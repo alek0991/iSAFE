@@ -43,6 +43,7 @@ This information is also provided in [./help.txt](https://github.com/alek0991/iS
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
 ===========
+With ```--format hap```, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
 ```sh
 python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/demo --format hap
 ```
