@@ -62,7 +62,6 @@ Software Requirements
     ```sh
     bcftools = "bcftools"
     ```
-
 Data Requirements
 ==========
 *  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
