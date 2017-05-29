@@ -2,6 +2,7 @@ hap format
 ==========
 ```--sample-case```/```--sample-cont``` requires a text file with two columns. The first one is population and the second column
                             is sample ID's (must be a subset of ID's used in the ```--input```/```--vcf-cont``` vcf file).
+                            
 Example
 ==========
 | #Position(bp) | Haplotype 1A | Haplotype 1B | Haplotype 2A | Haplotype 2B | ... |
