@@ -57,6 +57,8 @@ Data Requirements
     - Download links: 
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
+    - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
+    - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 
 EXECUTION:
@@ -89,8 +91,6 @@ Data Requirements:
     - Download links: 
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
-    - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - In case you are using ```.vcf.gz``` the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 Run:
 ```sh
