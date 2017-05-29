@@ -82,7 +82,7 @@ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/d
  
 Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
 ===========
-Follow the Data Requirements section and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations.
+Follow the instructions in the Data Requirements section and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations.
 
 Run:
 ```sh
