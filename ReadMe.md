@@ -48,7 +48,7 @@ bcftools = "bcftools"
 
 Data Requirements
 ==========
-*  Download Homo-Sapiens ```Ancestral Allele``` files:
+*  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` (and consequently ```--AA```):
     - Download links: 
         - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
         - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
