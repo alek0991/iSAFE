@@ -57,7 +57,7 @@ Data Requirements:
     - Download links: 
         - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
         - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
-    - unzip the files.
+    - You need to unzip the files.
 * Download 1000 Genome Project phased ```vcf``` files:
     - Download links: 
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
