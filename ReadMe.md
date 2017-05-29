@@ -85,7 +85,7 @@ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/d
  
 Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
 ===========
-Follow the instructions in the [Data Requirements section](https://github.com/alek0991/iSAFE#data-requirements) and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations (GRCh37/hg19).
+Follow the instructions in the [Data Requirements section](https://github.com/alek0991/iSAFE#data-requirements) and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations (GRCh37/hg19), and replace the text in each <> with the proper file path.
 
 Scenario 1. All the samples of the ```--input``` vcf file as the case population:
 - The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in all 2504 samples (5008 haplotypes) of 1000GP as the case population.
@@ -110,4 +110,3 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 
 * ```--input``` and ```--vcf-cont``` can point to the same vcf file or different ones. In case they are the same, ```--sampe-case``` and ```--sample-cont``` are mandatory.
 * Position of the [putative favored mutation](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) in the FIN population is 136,608,646 (GRCh37/hg19).
-* Replace the text in each ```<>``` with the required file path.
