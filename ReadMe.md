@@ -47,16 +47,16 @@ likelihood of being the favored variant of the selective sweep.
 
 Software Requirements
 ==========
-1. ```Python2.7```. Following python packages are required:
-    - ```numpy``` version 1.9 or above.
-    - ```pandas``` version 0.18 or above.
+1. ```Python2.7``` and following packages are required:
+    -   ```numpy``` version 1.9 or above 
+    -   ```pandas``` version 0.18 or above
+    
     ```sh
     sudo pip install numpy pandas;pip show numpy pandas
     ```
-2. ```bcftools``` version 1.2 or above.
-    - Please follow the [bcftools installation guideline](http://www.htslib.org/download/), or you can use the following command:
+2. ```bcftools``` version 1.2 or above. Please follow the [bcftools installation guideline](http://www.htslib.org/download/), or you can use the following alternative to install the bcftools:
     ```sh
-    sudo apt-get install bcftools
+    sudo apt-get install bcftools;bcftools
     ```
     - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added to your $PATH. Otherwise, you have to change the following line in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```sh
