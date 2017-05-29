@@ -49,12 +49,11 @@ Software Requirements
 ==========
 1. ```Python2.7```. Following python packages are required:
     - ```numpy``` version 1.9 or above.
-        - Install the package: ```pip install numpy```
-        - Check version: ```pip show numpy```
     - ```pandas``` version 0.18.0 or above.
-        - Install the package: ```pip install pandas```
-        - Check version: ```pip show pandas```
-
+    ```sh
+    sudo pip install numpy pandas
+    pip show numpy pandas
+    ```
 2. ```bcftools``` version 1.2 or above.
     Install the package:
     - Please follow the [bcftools installation guideline](http://www.htslib.org/download/).
