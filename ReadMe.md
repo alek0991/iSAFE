@@ -21,7 +21,9 @@ automatically.
     - Only phased vcf files are accepted.
     - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
     - When input format is vcf, [Ancestral Allele file](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/) (```--AA```) must be given.
-    - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples. 
+    - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples.
+    - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population.  You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
+    
     
 
 
