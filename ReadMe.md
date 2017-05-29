@@ -12,7 +12,7 @@ sites are biallelic and  polymorphic in the sample.
 Thus, our input is in the form of a binary 
 SNP matrix with each column corresponding to a haplotype and each row to a 
 mutation, and entries corresponding to the allelic state, with 0 denoting the
-ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE accepts VCF and indexed bgzipped VCF (.vcf.gz plus .vcf.gz.tbi) with the file type detected
+ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/DataFormat.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE accepts VCF and indexed bgzipped VCF (.vcf.gz plus .vcf.gz.tbi) with the file type detected
 automatically.
 
 Output:
@@ -41,7 +41,7 @@ python2.7 ./src/isafe.py --help
 ```
 This information is also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
-Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
+Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/DataFormat.md) format
 ===========
 With ```--format hap```, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
 ```sh
