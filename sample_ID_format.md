@@ -1,7 +1,7 @@
 hap format
 ==========
 ```--sample-case```/```--sample-cont``` requires a text file with two columns. The first one is population and the second column
-                            is sample ID's. Samples must be a subset of ID's used in the ```--input```/```--vcf-cont``` vcf file.
+                            is sample ID's. Samples must be a subset of ID's used in the ```--input```/```--vcf-cont``` vcf file, respectively.
                             
 Example
 ==========
@@ -20,5 +20,3 @@ Notes
 * TAB separated  
 * No Header  
 * Comment by #
-* Positions must be sorted numerically, in increasing order
-
