@@ -20,7 +20,7 @@ automatically.
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
     - Only phased vcf files are accepted.
     - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
-    - When input format is vcf, Ancestral Allele file (```--AA```) must be given.
+    - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```.
     - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples.
     - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population.  
     - You must use ```--sample-case``` and ```--sample-cont``` when the ```--input``` and ```--vcf-cont``` are the same (all samples are provided in a single vcf file).
