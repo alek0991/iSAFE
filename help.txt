@@ -52,7 +52,7 @@ optional arguments:
                           * This file must be TAB separated, no header, and comments by #.
                           * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
                           * Population column (first column) can have more than one population name. They are all considered the case populations.
-                          * You can use whatever name you want for populations, but sample ID's must be subset of the --input vcf file
+                          * Sample ID's must be subset of the --input vcf file
   --sample-cont SAMPLE_CONT
                         <string>: Path to the file containing sample ID's of the control population(s).
                           * This option is only available in --format vcf.
@@ -62,7 +62,7 @@ optional arguments:
                           * This file must be TAB separated, no header, and comments by #.
                           * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
                           * Population column (first column) can have more than one population name. They are all considered the control populations.
-                          * You can use whatever name you want for populations, but sample ID's must be subset of the --vcf-cont file
+                          * Sample ID's must be subset of the --vcf-cont file
   --AA AA               <string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.
                           * This is required in --format vcf.
                           * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/

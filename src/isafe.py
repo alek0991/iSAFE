@@ -46,7 +46,7 @@ def run():
                                               '\n  * This file must be TAB separated, no header, and comments by #.'
                                               '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).'
                                               '\n  * Population column (first column) can have more than one population name. They are all considered the case populations.'
-                                              '\n  * You can use whatever name you want for populations, but sample ID\'s must be subset of the --input vcf file', required=False)
+                                              '\n  * Sample ID\'s must be subset of the --input vcf file', required=False)
     parser.add_argument('--sample-cont', help='<string>: Path to the file containing sample ID\'s of the control population(s).'
                                               '\n  * This option is only available in --format vcf.'
                                               '\n  * When this option is not used all the samples in the --vcf-cont are considered as the control samples.'
@@ -54,7 +54,7 @@ def run():
                                               '\n  * This file must be TAB separated, no header, and comments by #.'
                                               '\n  * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).'
                                               '\n  * Population column (first column) can have more than one population name. They are all considered the control populations.'
-                                              '\n  * You can use whatever name you want for populations, but sample ID\'s must be subset of the --vcf-cont file', required=False)
+                                              '\n  * Sample ID\'s must be subset of the --vcf-cont file', required=False)
     parser.add_argument('--AA', help='<string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.'
                                      '\n  * This is required in --format vcf.'
                                      '\n  * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/'
