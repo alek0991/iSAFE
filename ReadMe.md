@@ -87,25 +87,25 @@ Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
 Follow the instructions in the [Data Requirements section](https://github.com/alek0991/iSAFE#data-requirements) and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations (GRCh37/hg19), and replace the text in each ```< >``` with the proper file path.
 
 Scenario 1. All the samples of the ```--input``` vcf file as the case population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene on all 2504 samples (5008 haplotypes) of 1000GP as the case population.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus on all 2504 samples (5008 haplotypes) of 1000GP as the case population.
     
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file>
 ```
 
 Scenario 2. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in FIN population of 1000GP as the case population.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --sample-case ./example/vcf/case.sample
 ```
 
 Scenario 3. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population and a subset of samples (```--sample-cont```) of the ```--vcf-cont``` vcf file as the control population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
 ```
 
 * ```--input``` and ```--vcf-cont``` can point to the same vcf file or different ones. In case they are the same, ```--sampe-case``` and ```--sample-cont``` are mandatory.
-* Position of the [putative favored mutation in the FIN population](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is 136,608,646 (GRCh37/hg19) of chromosome 2.
+* Position of the [putative favored mutation in the FIN population](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) for the selective sweep around LCT/MCM6 locus is 136,608,646 (GRCh37/hg19) of chromosome 2.
