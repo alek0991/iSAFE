@@ -11,7 +11,7 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.0'
+                                                 '\niSAFE v0.1'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
