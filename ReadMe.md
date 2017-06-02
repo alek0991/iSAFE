@@ -94,14 +94,14 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 ```
 
 Scenario 2. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus on FIN population of 1000GP as the case population.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --sample-case ./example/vcf/case.sample
 ```
 
 Scenario 3. A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population and a subset of samples (```--sample-cont```) of the ```--vcf-cont``` vcf file as the control population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus on FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
 
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --vcf-cont <chr2 vcf file> --sample-case ./example/vcf/case.sample --sample-cont ./example/vcf/cont.sample
