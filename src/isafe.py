@@ -2,6 +2,7 @@ import argparse
 import warnings
 import pandas as pd
 from isafeclass import iSafeClass
+from safeclass import SafeClass
 from utils import *
 from bcftools import get_snp_matrix
 def run():
@@ -10,7 +11,7 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v0.0.0'
+                                                 '\niSAFE v1.0.0'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
@@ -73,6 +74,10 @@ def run():
     parser.add_argument('--MaxRegionSize', type=int, help='<int>: Maximum region size in bp.'
                                                           '\n  * Consider the memory (RAM) size when change this parameter.'
                                                           '\nDefault: 6000000', required=False, default=6000000)
+    parser.add_argument('--MinRegionSize-bp', type=int, help='<int>: Minimum region size in bp.'
+                                                          '\nDefault: 200000', required=False, default=200000)
+    parser.add_argument('--MinRegionSize-ps', type=int, help='<int>: Minimum region size in polymorphic sites.'
+                                                          '\nDefault: 1000', required=False, default=1000)
     parser.add_argument('--MaxGapSize', type=int, help='<int>: Maximum gap size in bp.'
                                                        '\n  * When there is a gap larger than --MaxGapSize the program raise an error.'
                                                        '\n  * You can ignore this by setting the --IgnoreGaps flag.'
@@ -98,7 +103,14 @@ def run():
                                                             '\nDefault: false', action='store_true')
     parser.add_argument('--IgnoreGaps', '-IG', help='<bool>: Set this flag to ignore gaps.\nDefault: false', action='store_true')
     parser.add_argument('--StatusOff', '-SO', help='<bool>: Set this flag to turn off printing status.\nDefault: false', action='store_true')
+    parser.add_argument('--WarningOff', '-WO', help='<bool>: Set this flag to turn off warnings.\nDefault: false',
+                        action='store_true')
     parser.add_argument('--OutputPsi', '-Psi', help='<bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.'
+                                                    '\nDefault: false', action='store_true')
+    parser.add_argument('--SAFE', help='<bool>: Set this flag to report the SAFE score of the entire region.'
+                                       '\n  * When the region size is less than --MinRegionSize-ps (Default: 1000 SNPs) or --MinRegionSize-bp (Default: 200kbp), '
+                                       '\n    the region is too small for iSAFE analysis. Therefore, It\'s better to use --SAFE flag to report the SAFE scores of '
+                                       '\n    the entire region instead of iSAFE scores.'
                                                     '\nDefault: false', action='store_true')
     args = parser.parse_args()
 
@@ -108,7 +120,8 @@ def run():
         if ((args.vcf_cont is not None)|(args.sample_case is not None)|(args.sample_cont is not None)|(args.AA is not None)):
             parser.error("[--format hap] is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.")
         else:
-            warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
+            if not args.WarningOff:
+                warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
     if (args.format == 'vcf'):
         if args.AA is None:
             parser.error("--AA must be provided when input format is vcf.")
@@ -152,32 +165,41 @@ def run():
     if total_window_size>args.MaxRegionSize:
         raise ValueError("The region is %.3fMbp and it cannot be greater than %iMbp." % (
         total_window_size / 1e6, args.MaxRegionSize / 1e6))
-
     if num_gaps>0:
         if not args.IgnoreGaps:
             raise ValueError("There is %i gaps with size greater than %ikbp."%(num_gaps, args.MaxGapSize/1e3))
         else:
-            if status:
+            if not args.WarningOff:
                 warnings.warn("Warning: There is %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
     f = snp_matrix.mean(1)
     snp_matrix = snp_matrix.loc[((1 - f) * f) > 0]
+    NumSNPs = snp_matrix.shape[0]
     if status:
         print "%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1])
-    obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
-    obj_isafe.fire(status=status)
-    df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})
-    df_final[["POS", "iSAFE", "DAF"]].to_csv("%s.iSAFE.out"%args.output, index=None,sep='\t')
-    if args.OutputPsi:
-        psi_k1 = obj_isafe.creat_psi_k1_dataframe()
-        psi_k1.index.rename("#POS", inplace=True)
-        psi_k1.to_csv("%s.Psi.out"%args.output, sep='\t')
-    # if not args.StatusOff:
-    #     print "============Run iSAFE============"
-    #     print "Sliding window size: %i SNPs"%w_size
-    #     print "Step size: %i SNPs"%w_step
-    #     print "Top k: %i"%top_k1
-    #     print "Max Rank: %i"%top_k2
-    #     #print "StatusOff: %s" % args.StatusOff
-    #     print "================================"
+
+    if args.SAFE:
+        if not args.WarningOff:
+            warnings.warn("The --SAFE flag is set. Therefore, output is the SAFE scores of the entire region (not the iSAFE scores).")
+        obj_safe = SafeClass(snp_matrix.values.T)
+        df_final = obj_safe.creat_dataframe().rename(columns={'safe':'SAFE', "freq":"DAF"})
+        df_final['POS'] = snp_matrix.index
+        df_final[["POS", "SAFE", "DAF", "phi", "kappa"]].to_csv("%s.SAFE.out"%args.output, index=None,sep='\t')
+        if status:
+            print "SAFE Done!"
+    else:
+        if (NumSNPs < args.MinRegionSize_bp) | (total_window_size < args.MinRegionSize_ps):
+            raise ValueError((
+                             "The region Size is %i SNPs and %ikbp. When the region size is less than --MinRegionSize-ps (%i) SNPs or --MinRegionSize-bp (%ikbp), "
+                             "the region is too small for iSAFE analysis and better to use --SAFE flag to report "
+                             "the SAFE score of the entire region." % (
+                             NumSNPs, total_window_size / 1e3, args.MinRegionSize_ps, args.MinRegionSize_bp / 1e3)))
+        obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
+        obj_isafe.fire(status=status)
+        df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})
+        df_final[["POS", "iSAFE", "DAF"]].to_csv("%s.iSAFE.out"%args.output, index=None,sep='\t')
+        if args.OutputPsi:
+            psi_k1 = obj_isafe.creat_psi_k1_dataframe()
+            psi_k1.index.rename("#POS", inplace=True)
+            psi_k1.to_csv("%s.Psi.out"%args.output, sep='\t')
 if __name__ == '__main__':
     run()

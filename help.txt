@@ -1,17 +1,20 @@
 usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
                 [--vcf-cont VCF_CONT] [--sample-case SAMPLE_CASE]
                 [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION]
-                [--MaxRegionSize MAXREGIONSIZE] [--MaxGapSize MAXGAPSIZE]
-                [--window WINDOW] [--step STEP] [--topk TOPK]
-                [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
+                [--MaxRegionSize MAXREGIONSIZE]
+                [--MinRegionSize-bp MINREGIONSIZE_BP]
+                [--MinRegionSize-ps MINREGIONSIZE_PS]
+                [--MaxGapSize MAXGAPSIZE] [--window WINDOW] [--step STEP]
+                [--topk TOPK] [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
                 [--RandomSampleRate RANDOMSAMPLERATE] [--ForceRandomSample]
-                [--IgnoreGaps] [--StatusOff] [--OutputPsi]
+                [--IgnoreGaps] [--StatusOff] [--WarningOff] [--OutputPsi]
+                [--SAFE]
 
 ====================================================================
 iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
 ====================================================================
 Source code & further instructions can be found at: https://github.com/alek0991/iSAFE
-iSAFE v0.0.0
+iSAFE v1.0.0
 --------------------------------------------------------------------
 
 optional arguments:
@@ -80,6 +83,12 @@ optional arguments:
                         <int>: Maximum region size in bp.
                           * Consider the memory (RAM) size when change this parameter.
                         Default: 6000000
+  --MinRegionSize-bp MINREGIONSIZE_BP
+                        <int>: Minimum region size in bp.
+                        Default: 200000
+  --MinRegionSize-ps MINREGIONSIZE_PS
+                        <int>: Minimum region size in polymorphic sites.
+                        Default: 1000
   --MaxGapSize MAXGAPSIZE
                         <int>: Maximum gap size in bp.
                           * When there is a gap larger than --MaxGapSize the program raise an error.
@@ -113,5 +122,12 @@ optional arguments:
                         Default: false
   --StatusOff, -SO      <bool>: Set this flag to turn off printing status.
                         Default: false
+  --WarningOff, -WO     <bool>: Set this flag to turn off warnings.
+                        Default: false
   --OutputPsi, -Psi     <bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.
+                        Default: false
+  --SAFE                <bool>: Set this flag to report the SAFE score of the entire region.
+                          * When the region size is less than --MinRegionSize-ps (Default: 1000 SNPs) or --MinRegionSize-bp (Default: 200kbp), 
+                            the region is too small for iSAFE analysis. Therefore, It's better to use --SAFE flag to report the SAFE scores of 
+                            the entire region instead of iSAFE scores.
                         Default: false
