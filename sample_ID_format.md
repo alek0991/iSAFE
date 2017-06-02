@@ -15,7 +15,6 @@ Example
 |YRI|NA19146|
 |...|...|
 
-
 Notes
 ==========
 * TAB separated  

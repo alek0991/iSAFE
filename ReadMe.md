@@ -5,7 +5,6 @@ been actively developed, but mostly do not identify the specific mutation favore
 sweep. We present a method, iSAFE that uses population genetics signals and a boosting
 approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp.
 
-
 Software Requirements
 ==========
 1. ```Python2.7``` and the following packages are required:
