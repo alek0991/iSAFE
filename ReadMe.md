@@ -87,7 +87,7 @@ Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
 Follow the instructions in the [Data Requirements section](https://github.com/alek0991/iSAFE#data-requirements) and download Homo-Sapiens Ancestral Allele files and phased vcf files of Chromosome 2 of 1000GP populations (GRCh37/hg19), and replace the text in each ```< >``` with the proper file path.
 
 Scenario 1. All the samples of the ```--input``` vcf file as the case population:
-- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene in all 2504 samples (5008 haplotypes) of 1000GP as the case population.
+- The following command apply iSAFE on 5Mbp region around LCT/MCM6 gene on all 2504 samples (5008 haplotypes) of 1000GP as the case population.
     
 ```sh
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file>
