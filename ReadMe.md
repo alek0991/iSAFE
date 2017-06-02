@@ -108,4 +108,4 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 ```
 
 * ```--input``` and ```--vcf-cont``` can point to the same vcf file or different ones. In case they are the same, ```--sampe-case``` and ```--sample-cont``` are mandatory.
-* Position of the [putative favored mutation in the FIN population](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is 136,608,646 (GRCh37/hg19) in chromosome 2.
+* Position of the [putative favored mutation in the FIN population](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) is chr2:136,608,646 (GRCh37/hg19).
