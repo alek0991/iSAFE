@@ -187,7 +187,9 @@ def run():
         if status:
             print "SAFE Done!"
     else:
-        if (NumSNPs < args.MinRegionSize_bp) | (total_window_size < args.MinRegionSize_ps):
+        if (NumSNPs < args.MinRegionSize_ps) | (total_window_size < args.MinRegionSize_bp):
+            print NumSNPs, args.MinRegionSize_ps
+            print total_window_size, args.MinRegionSize_bp
             raise ValueError((
                              "The region Size is %i SNPs and %ikbp. When the region size is less than --MinRegionSize-ps (%i) SNPs or --MinRegionSize-bp (%ikbp), "
                              "the region is too small for iSAFE analysis and better to use --SAFE flag to report "
