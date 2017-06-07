@@ -6,8 +6,6 @@ sweep. We present a method, iSAFE that uses population genetics signals and a bo
 approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp. 
 A preprint of the method is available through this link: 
 - bioRxiv: https://doi.org/10.1101/139055
-[![N|Solid](http://d2538ggaoe6cji.cloudfront.net/sites/default/files/bioarchives_article%232514A7F.jpg)](https://doi.org/10.1101/139055)
-
 
 Software Requirements
 ==========
