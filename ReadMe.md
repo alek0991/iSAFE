@@ -32,8 +32,8 @@ Data Requirements
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
     - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
-    - Better to use bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - In case you are using  bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
+    - Only accept bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
+    - In case you are using a bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
 
 Execution:
 ===========
@@ -52,8 +52,7 @@ sites are biallelic and  polymorphic in the sample.
 Thus, our input is in the form of a binary 
 SNP matrix with each column corresponding to a haplotype and each row to a 
 mutation, and entries corresponding to the allelic state, with 0 denoting the
-ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE accepts VCF and indexed bgzipped VCF (.vcf.gz plus .vcf.gz.tbi) with the file type detected
-automatically.
+ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE only accepts indexed bgzipped VCF (.vcf.gz plus .vcf.gz.tbi).
 * [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format: ```--format hap``` or ```-f hap```
     - Input with hap format is not allowed with any of these: ```--vcf-cont```, ```--sample-case```, ```--sample-cont```, ```--AA```.
     - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
