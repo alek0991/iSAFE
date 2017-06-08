@@ -5,6 +5,7 @@ from isafeclass import iSafeClass
 from safeclass import SafeClass
 from utils import *
 from bcftools import get_snp_matrix
+import os
 def run():
     # command line parser
     parser = argparse.ArgumentParser(description='===================================================================='
@@ -124,8 +125,9 @@ def run():
                 warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
     if (args.format == 'vcf'):
         if not args.input.endswith(".vcf.gz"):
-            raise ImportError("bgzipped VCF file along with ")
-
+            raise ImportError("vcf format only accepts indexed bgzipped VCF file (.vcf.gz along with tabix index file .vcf.gz.tbi)")
+        if not os.path.exists("%s.tbi"%(args.input)):
+            raise ImportError("tabix index file .vcf.gz.tbi is required along with bgzipped vcf file .vcf.gz")
         if args.AA is None:
             parser.error("--AA must be provided when input format is vcf.")
         if args.region is None:

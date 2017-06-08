@@ -58,7 +58,7 @@ ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [ha
     - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
     - Only phased vcf files are accepted.
-    - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz```), along with tabix index file (```.vcf.gz.tbi```).
+    - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz``` along with tabix index file ```.vcf.gz.tbi```).
     - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```.
     - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples.
     - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population.  
