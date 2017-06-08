@@ -33,7 +33,7 @@ Data Requirements
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
     - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
     - Only accept bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - In case you are using a bgzipped vcf file ```.vcf.gz```, the index file ```.vcf.gz.tbi``` is also required by bcftools.
+    - The tabix index file ```.vcf.gz.tbi``` is also required by bcftools along with bgzipped vcf files ```.vcf.gz```.
 
 Execution:
 ===========
@@ -52,13 +52,13 @@ sites are biallelic and  polymorphic in the sample.
 Thus, our input is in the form of a binary 
 SNP matrix with each column corresponding to a haplotype and each row to a 
 mutation, and entries corresponding to the allelic state, with 0 denoting the
-ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE only accepts indexed bgzipped VCF (```.vcf.gz``` plus ```.vcf.gz.tbi```).
+ancestral allele, and 1 denoting the derived allele. iSAFE can take input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) or [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) formats. Note that in vcf mode, iSAFE only accepts indexed bgzipped VCF file (```.vcf.gz```), along with tabix index file (```.vcf.gz.tbi```).
 * [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format: ```--format hap``` or ```-f hap```
     - Input with hap format is not allowed with any of these: ```--vcf-cont```, ```--sample-case```, ```--sample-cont```, ```--AA```.
     - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
     - Only phased vcf files are accepted.
-    - vcf format only handles indexed bgzipped VCF files (```.vcf.gz``` plus ```.vcf.gz.tbi```).
+    - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz```), along with tabix index file (```.vcf.gz.tbi```).
     - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```.
     - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples.
     - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population.  
