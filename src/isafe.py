@@ -123,6 +123,9 @@ def run():
             if not args.WarningOff:
                 warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
     if (args.format == 'vcf'):
+        if not args.input.endswith(".vcf.gz"):
+            raise ImportError("bgzipped VCF file along with ")
+
         if args.AA is None:
             parser.error("--AA must be provided when input format is vcf.")
         if args.region is None:
