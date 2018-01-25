@@ -1,16 +1,19 @@
 usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
                 [--vcf-cont VCF_CONT] [--sample-case SAMPLE_CASE]
                 [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION]
-                [--MaxRegionSize MAXREGIONSIZE] [--MaxGapSize MAXGAPSIZE]
-                [--window WINDOW] [--step STEP] [--topk TOPK]
-                [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
+                [--MaxRegionSize MAXREGIONSIZE]
+                [--MinRegionSize-bp MINREGIONSIZE_BP]
+                [--MinRegionSize-ps MINREGIONSIZE_PS]
+                [--MaxGapSize MAXGAPSIZE] [--window WINDOW] [--step STEP]
+                [--topk TOPK] [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
                 [--RandomSampleRate RANDOMSAMPLERATE] [--ForceRandomSample]
-                [--IgnoreGaps] [--StatusOff] [--OutputPsi]
+                [--IgnoreGaps] [--StatusOff] [--WarningOff] [--OutputPsi]
+                [--SAFE]
 
 ====================================================================
 iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
 ====================================================================
-Source code can be found at: <https://github.com/alek0991/iSAFE>
+Source code & further instructions can be found at: https://github.com/alek0991/iSAFE
 iSAFE v1.0
 --------------------------------------------------------------------
 
@@ -18,33 +21,78 @@ optional arguments:
   -h, --help            show this help message and exit
   --format FORMAT, -f FORMAT
                         <string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).
-                        NOTE 1: vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
-                        NOTE 2: When input format is vcf, Ancestral Allele file (--AA) must be given.
-                        NOTE 3: Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.
-                        NOTE 4: When the input format is hap, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, 
-                        and the selection is ongoing (favored mutation is not fixed).
+                        iSAFE can handle two types of inputs (phased haplotypes are required):
+                          * vcf format: --format vcf or -f vcf
+                            - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
+                            - When input format is vcf, Ancestral Allele file (--AA) must be given.
+                          * hap format: --format hap or -f hap
+                            - Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.
+                            - With hap format, iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file,
+                              and the selection is ongoing (the favored mutation is not fixed).
                         Default: vcf
   --input INPUT, -i INPUT
-                        <string>: Path to input.
+                        <string>: Path to the input (case population).
+                          * Input positions must be sorted numerically, in increasing order.
   --output OUTPUT, -o OUTPUT
-                        <string>: Path to output.
-                        NOTE 1: iSAFE generates <OUTPUT>.iSAFE.out
-                        NOTE 2: When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out
+                        <string>: Path to the output(s).
+                          * iSAFE generates <OUTPUT>.iSAFE.out
+                          * When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out
   --vcf-cont VCF_CONT   <string>: Path to the phased control population in .vcf or .vcf.gz format.
+                          * This is optional but recommended for capturing fixed sweeps.
+                          * This option is only available with --format vcf.
+                          * You can choose a subset of samples in this file by using --sample-cont option,
+                            otherwise all the samples in this file are cosidered as control population.
+                          * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
+                          * You can (you don't have to) use 1000 Genome Project populations as control.
+                            - Download link of phased VCF files of 1000GP (GRCh37/hg19): http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/
+                            - Download link of phased VCF files of 1000GP (GRCh38/hg38): http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/
   --sample-case SAMPLE_CASE
-                        <string>: Path to the samples file of the case population in .sample format (see the manual for details)
+                        <string>: Path to the file containing sample ID's of the case population.
+                          * This option is only available in --format vcf.
+                          * When this option is not used all the samples in the --input are considered as the case samples.
+                          * This file must have two columns, the first one is population and the second column
+                            is sample ID's (must be a subset of ID's used in the --input vcf file).
+                          * This file must be TAB separated, no header, and comments by #.
+                          * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
+                          * Population column (first column) can have more than one population name. They are all considered the case populations.
+                          * Sample ID's must be subset of the --input vcf file
   --sample-cont SAMPLE_CONT
-                        <string>: Path to the samples file of the control populations in .sample format (see the manual for details)
-  --AA AA               <string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format (see the manual for details)
+                        <string>: Path to the file containing sample ID's of the control population(s).
+                          * This option is only available in --format vcf.
+                          * When this option is not used all the samples in the --vcf-cont are considered as the control samples.
+                          * This file must have two columns, the first one is population and the second column
+                            is sample ID's (must be a subset of ID's used in the --vcf-cont file).
+                          * This file must be TAB separated, no header, and comments by #.
+                          * You must use --sample-case and --sample-cont when --input and --vcf-cont are the same (all samples are provided in a single vcf file).
+                          * Population column (first column) can have more than one population name. They are all considered the control populations.
+                          * Sample ID's must be subset of the --vcf-cont file
+  --AA AA               <string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.
+                          * This is required in --format vcf.
+                          * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/
+                          * Download link (GRCh38/hg38): http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/
   --region REGION       <chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.
-                        Examples, 2:10000000-15000000 or 2:10,000,000-15,000,000. 
-                        NOTE 1: The <chr> is dumped when the input is --hap. 
-                        NOTE 2: <chr> format (e.g. chr2 or 2) must be consistent with vcf files.
+                          * This is required in --format vcf but optional in the --format hap.
+                          * In vcf format, <chr> style (e.g. chr2 or 2) must be consistent with vcf files.
+                          * The <chr> is dumped in --format hap.
+                          * Valid Examples:
+                              2:10000000-15000000
+                              chr2:10000000-15000000
+                              2:10,000,000-15,000,000
+                              chr2:10,000,000-15,000,000
   --MaxRegionSize MAXREGIONSIZE
                         <int>: Maximum region size in bp.
+                          * Consider the memory (RAM) size when change this parameter.
                         Default: 6000000
+  --MinRegionSize-bp MINREGIONSIZE_BP
+                        <int>: Minimum region size in bp.
+                        Default: 200000
+  --MinRegionSize-ps MINREGIONSIZE_PS
+                        <int>: Minimum region size in polymorphic sites.
+                        Default: 1000
   --MaxGapSize MAXGAPSIZE
                         <int>: Maximum gap size in bp.
+                          * When there is a gap larger than --MaxGapSize the program raise an error.
+                          * You can ignore this by setting the --IgnoreGaps flag.
                         Default: 10000
   --window WINDOW       <int>: Sliding window size in polymorphic sites.
                         Default: 300
@@ -53,22 +101,33 @@ optional arguments:
   --topk TOPK           <int>: Rank of SNPs used for learning window weights (alpha).
                         Default: 1
   --MaxRank MAXRANK     <int>: Ignore SNPs with rank higher than MAXRANK.
-                        NOTE: For considering all SNPs set --MaxRank > --window (Default: 300).
+                          * For considering all SNPs set --MaxRank > --window.
+                          * The higher the --MaxRank, the higher the computation time.
                         Default: 15
-  --MaxFreq MAXFREQ     <float>: Ignore SNPs with frequency higher than MAXFreq.
+  --MaxFreq MAXFREQ     <float>: Ignore SNPs with frequency higher than MaxFreq.
                         Default: 0.95
   --RandomSampleRate RANDOMSAMPLERATE
                         <float>: Portion of added random samples.
-                        NOTE 1: RandomSampleRate = RandomSamples/(RandomSamples+CaseSamples).
-                        NOTE 2: Must be non-negative and less than 1.
+                          * RandomSampleRate = RandomSamples/(RandomSamples+CaseSamples).
+                          * Must be non-negative and less than 1.
                         Default: 0.1
+                          * Ignored when --vcf-case is not used.
+                          * Ignored when MDDAF criterion doesn't recommend adding random samples. The option --ForceRandomSample
+                            can be used to override MDDAF criterion.
   --ForceRandomSample, -FRS
-                        <bool>: Set this flag to force the iSAFE to use random samples even when MDDAF does not suggest.
-                        NOTE: --vcf-cont must be provided.
+                        <bool>: Set this flag to force the iSAFE to use random samples even when MDDAF doesn't recommend.
+                          * --vcf-cont must be provided.
                         Default: false
   --IgnoreGaps, -IG     <bool>: Set this flag to ignore gaps.
                         Default: false
   --StatusOff, -SO      <bool>: Set this flag to turn off printing status.
                         Default: false
+  --WarningOff, -WO     <bool>: Set this flag to turn off warnings.
+                        Default: false
   --OutputPsi, -Psi     <bool>: Set this flag to output Psi_1 in a text file with suffix .Psi.out.
+                        Default: false
+  --SAFE                <bool>: Set this flag to report the SAFE score of the entire region.
+                          * When the region size is less than --MinRegionSize-ps (Default: 1000 SNPs) or --MinRegionSize-bp (Default: 200kbp), 
+                            the region is too small for iSAFE analysis. Therefore, It's better to use --SAFE flag to report the SAFE scores of 
+                            the entire region instead of iSAFE scores.
                         Default: false
