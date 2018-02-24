@@ -1,11 +1,8 @@
 iSAFE: **i**ntegrated **S**election of **A**llele **F**avored by **E**volution
 ==========
-Methods that scan population genomics data to identify signatures of selective sweep have
-been actively developed, but mostly do not identify the specific mutation favored by the selective
-sweep. We present a method, iSAFE that uses population genetics signals and a boosting
-approach to pinpoint the favored mutation even when the signature of selection extends to 5Mbp. 
-A preprint of the method is available through this link: 
-- bioRxiv: https://doi.org/10.1101/139055
+Most approaches that capture signatures of selective sweeps in population genomics data do not identify the specific mutation favored by selection. We present iSAFE (for “integrated selection of allele favored by evolution”), a method that enables researchers to accurately pinpoint the favored mutation in a large region (∼5 Mbp) by using a statistic derived solely from population genetics signals. iSAFE does not require knowledge of demography, the phenotype under selection, or functional annotations of mutations. 
+- Akbari, Ali, Joseph J. Vitti, Arya Iranmehr, Mehrdad Bakhtiari, Pardis C. Sabeti, Siavash Mirarab, and Vineet Bafna. "Identifying the favored mutation in a positive selective sweep." Nature Methods (2018). https://doi.org/10.1038/nmeth.4606 
+
 
 Software Requirements
 ==========
