@@ -14,12 +14,10 @@ Software Requirements
     - Follow the [bcftools installation guideline](http://www.htslib.org/download/).
     - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added 
      to your ```$PATH```; otherwise, you have to change the following 
-     line in ```./src/bcftools.py``` to the bcftools binary file path: 
+     [line](https://github.com/alek0991/iSAFE/blob/b54f60f8f274ab248e308f6e953ff018d1b577c7/src/bcftools.py#L6) in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```sh
     bcftools = "bcftools"
-    ```
-    https://github.com/alek0991/iSAFE/blob/b54f60f8f274ab248e308f6e953ff018d1b577c7/src/bcftools.py#L6
-    
+    ```    
 Data Requirements
 ==========
 *  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
