@@ -18,6 +18,8 @@ Software Requirements
     ```sh
     bcftools = "bcftools"
     ```
+    https://github.com/alek0991/iSAFE/blob/b54f60f8f274ab248e308f6e953ff018d1b577c7/src/bcftools.py#L6
+    
 Data Requirements
 ==========
 *  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
