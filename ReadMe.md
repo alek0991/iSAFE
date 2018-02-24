@@ -10,7 +10,7 @@ Software Requirements
 1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
     -   ```pandas``` version 0.18 or above
-2. ```bcftools``` version 1.2 or above (not required if you are using --format hap).
+2. ```bcftools``` version 1.2 or above (only for ```--format vcf```, not required if you are using ```--format hap```).
     - Follow the [bcftools installation guideline](http://www.htslib.org/download/).
     - iSAFE assumes the bcftools binary file is installed to a bin subdirectory that is added 
      to your ```$PATH```; otherwise, you have to change the following 
