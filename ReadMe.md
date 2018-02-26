@@ -5,7 +5,7 @@ Most approaches that capture signatures of selective sweeps in population genomi
 - Contact: Ali Akbari (alakbari@ucsd.edu). If I can be of assistance, please do not hesitate to contact me.
 
 
-Software Requirements
+Software requirements
 ==========
 1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
@@ -59,7 +59,7 @@ Output:
 The output is a non-negative iSAFE-score for each mutation, according to its 
 likelihood of being the favored variant of the selective sweep.
 
-Data Requirements
+Data availability for vcf format
 ==========
 *  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
     - Download links: 
