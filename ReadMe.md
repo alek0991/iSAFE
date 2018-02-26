@@ -18,20 +18,6 @@ Software Requirements
     ```sh
     bcftools = "bcftools"
     ```    
-Data Requirements
-==========
-*  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
-    - Download links: 
-        - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
-        - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
-    - You need to unzip the files.
-* The 1000 Genome Project phased vcf files can be used as ```--input``` or ```--vcf-cont```:
-    - Download links: 
-        - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
-        - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
-    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
-    - Only accept bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - The tabix index file ```.vcf.gz.tbi``` is also required by bcftools along with bgzipped vcf files ```.vcf.gz```.
 
 Execution:
 ===========
@@ -71,6 +57,22 @@ Output:
 ==========
 The output is a non-negative iSAFE-score for each mutation, according to its 
 likelihood of being the favored variant of the selective sweep.
+
+Data Requirements
+==========
+*  Download Homo-Sapiens Ancestral Allele files in case you are using ```--format vcf``` and consequently ```--AA```:
+    - Download links: 
+        - [GRCh37/hg19](http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/)
+        - [GRCh38/hg38](http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/)
+    - You need to unzip the files.
+* The 1000 Genome Project phased vcf files can be used as ```--input``` or ```--vcf-cont```:
+    - Download links: 
+        - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
+        - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
+    - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
+    - Only accept bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
+    - The tabix index file ```.vcf.gz.tbi``` is also required by bcftools along with bgzipped vcf files ```.vcf.gz```.
+
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
 ===========
