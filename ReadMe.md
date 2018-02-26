@@ -80,7 +80,7 @@ python2.7 ./src/isafe.py --input ./example/hap/demo.hap --output ./example/hap/d
 ```
 * 5Mbp region simulated by [msms](http://www.mabs.at/ewing/msms/index.shtml).
 * Position of the favored mutation is 2,500,000.
-* Not surprisingly, iSAFE performance deteriorated when the favored mutation is fixed or near fixation (favored allele frequency (ν) > 0.9 in [Supplementary Fig. 3e](https://www.nature.com/articles/nmeth.4606/figures/6)). To handle this special case, we included individuals from non-target populations, using a specific protocol (See online [Methods](https://www.nature.com/articles/nmeth.4606#methods), section *Adding outgroup samples*.). 
+* Not surprisingly, iSAFE performance deteriorated when the favored mutation is fixed or near fixation (favored allele frequency (ν) > 0.9 in [Supplementary Fig. 3e](https://www.nature.com/articles/nmeth.4606/figures/6)). To handle this special case, we included individuals from non-target populations, using a specific protocol (See online [Methods](https://www.nature.com/articles/nmeth.4606#methods), section *Adding outgroup samples*). 
 
 Demo 2: input in [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format
 ===========
