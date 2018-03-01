@@ -57,7 +57,13 @@ ancestral allele, and 1 denoting the derived allele. Not surprisingly, iSAFE per
 Output:
 ==========
 The output is a non-negative iSAFE-score for each mutation, according to its 
-likelihood of being the favored variant of the selective sweep.
+likelihood of being the favored variant of the selective sweep. Result (```<output>.iSAFE.out```) file is the following format.
+
+| POS | iSAFE | DAF |
+|:----------:|:---------:|:---------:|
+| 291 |    0.01    |    0.05    |
+| 626 |    0.02    |    0.55    |
+| ... |    ...    |    ...    |
 
 Data availability for vcf format
 ==========
