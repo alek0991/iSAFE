@@ -58,13 +58,19 @@ Output:
 ==========
 The output is a non-negative iSAFE-score for each mutation, according to its 
 likelihood of being the favored variant of the selective sweep. 
-Result (```<output>.iSAFE.out```) file is in the following format.
+Result (```<output>.iSAFE.out```) is a TAB separated file in the following format.
 
 | POS | iSAFE | DAF |
 |:----------:|:---------:|:---------:|
 | 291 |    0.01    |    0.05    |
 | 626 |    0.02    |    0.55    |
 | ... |    ...    |    ...    |
+
+With following headers:
+
+    - POS: Position (bp) sorted in ascending order
+    - iSAFE: non-negative iSAFE score
+    - DAF: Derived allele frequency
 
 Data availability for vcf format
 ==========
