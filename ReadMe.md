@@ -59,8 +59,8 @@ Result (```<output>.iSAFE.out```) is a TAB separated file in the following forma
 
 | POS | iSAFE | DAF |
 |:----------:|:---------:|:---------:|
-| 291 |    0.01    |    0.05    |
-| 626 |    0.02    |    0.55    |
+| 291 |    0.02    |    0.05    |
+| 626 |    0.01    |    0.55    |
 | ... |    ...    |    ...    |
 
 With following headers:
