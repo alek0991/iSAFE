@@ -28,7 +28,6 @@ python2.7 ./src/isafe.py --help
 ```
 These detailed instructions are also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
-
 Input:
 ==========
 Consider a sample of phased haplotypes in a genomic region. We assume that all 
