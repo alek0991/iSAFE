@@ -44,11 +44,9 @@ ancestral allele, and 1 denoting the derived allele. Not surprisingly, iSAFE per
     - Only phased vcf files are accepted.
     - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz``` along with tabix index file ```.vcf.gz.tbi```).
     - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```.
-    - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples.
-    - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population.  
-    - You must use ```--sample-case``` and ```--sample-cont``` when the ```--input``` and ```--vcf-cont``` are the same (all samples are provided in a single vcf file).
-    - The **sample ID** file format is defined [here](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).
-    
+    - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).
+    - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).  
+    - You must use ```--sample-case``` and ```--sample-cont``` when the ```--input``` and ```--vcf-cont``` are the same (all samples are provided in a single vcf file).    
     
 
 
