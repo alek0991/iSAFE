@@ -68,9 +68,9 @@ Result (```<output>.iSAFE.out```) is a TAB separated file in the following forma
 
 With following headers:
 
-    - POS: Position (bp) sorted in ascending order
-    - iSAFE: non-negative iSAFE score
-    - DAF: Derived allele frequency
+   - POS: Position (bp) sorted in ascending order
+   - iSAFE: non-negative iSAFE score
+   - DAF: Derived allele frequency
 
 Data availability for vcf format
 ==========
