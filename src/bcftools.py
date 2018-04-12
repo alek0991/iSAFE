@@ -28,7 +28,8 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
     cmd = "%s query" % bcf_tools
     cmd += " -r %s" % target_region
     cmd += sample_arg
-    cmd += " -i 'TYPE=\"snp\" && N_ALT==1'"
+    # cmd += " -i 'TYPE=\"snp\" && N_ALT==1'"
+    cmd += " -i 'N_ALT==1'"
     # cmd += " -i 'TYPE=\"snp\"'"
     cmd += " -f '%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT[\\t%GT]\\n'"
     cmd += " %s" % (the_vcf)
