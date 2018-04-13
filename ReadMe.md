@@ -42,7 +42,7 @@ ancestral allele, and 1 denoting the derived allele. Not surprisingly, iSAFE per
     - Consequently, input with hap format is not allowed with any of these: ```--vcf-cont```, ```--sample-case```, ```--sample-cont```, ```--AA```.
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
     - Only phased vcf files are accepted.
-    - Keeps not SNPs (indels, MNPs, etc) as long as they have only one ALT (binary alleles).
+    - In v1.0.1 or above it keeps not SNPs (indels, MNPs, and etc) as long as they have only one ALT (binary alleles).
     - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz``` along with tabix index file ```.vcf.gz.tbi```).
     - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```.
     - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).
