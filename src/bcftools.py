@@ -131,7 +131,7 @@ def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=
 
     total_window_size=region_end-region_start
     if status:
-        print 'Loading %0.3fMbp, %s:%i-%i'%(total_window_size/1e6, chrom, region_start, region_end)
+        print 'Loading %0.3fMbp, %s:%i-%i, please wait ...'%(total_window_size/1e6, chrom, region_start, region_end)
     df = get_combined_vcf(chrom, region_start, region_end, case_vcf, cont_vcf=cont_vcf, case_IDs=case_IDs, cont_IDs=cont_IDs)
     dfI = get_AA_df(AA_file, df)
     I = df.index.get_level_values("POS").isin(dfI.loc[dfI['FLIP']==True, "POS"])

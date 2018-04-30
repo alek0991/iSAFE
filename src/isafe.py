@@ -5,6 +5,8 @@ from isafeclass import iSafeClass
 from safeclass import SafeClass
 from utils import *
 from bcftools import get_snp_matrix
+import time
+import sys
 import os
 def run():
     # command line parser
@@ -12,7 +14,7 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.1'
+                                                 '\niSAFE v1.0.2'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
@@ -143,6 +145,10 @@ def run():
         if (args.RandomSampleRate>=1)|(args.RandomSampleRate<0):
             raise ValueError("--RandomSampleRate must be non-negative and less than 1.")
     status = not args.StatusOff
+    if status:
+        sys.stdout.write('-~'*30+'\n')
+        sys.stdout.write(time.ctime()+'\n')
+
     if args.region is not None:
         try:
             chrom, region_start, region_end = parse_region(args.region.replace(',', ''))
@@ -174,7 +180,7 @@ def run():
         total_window_size / 1e6, args.MaxRegionSize / 1e6))
     if num_gaps>0:
         if not args.IgnoreGaps:
-            raise ValueError("There is %i gaps with size greater than %ikbp."%(num_gaps, args.MaxGapSize/1e3))
+            raise ValueError("There is %i gaps with size greater than %ikbp. Set --IgnoreGaps flag to ignore gaps."%(num_gaps, args.MaxGapSize/1e3))
         else:
             if not args.WarningOff:
                 warnings.warn("Warning: There is %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
@@ -192,7 +198,7 @@ def run():
         df_final['POS'] = snp_matrix.index
         df_final[["POS", "SAFE", "DAF", "phi", "kappa"]].to_csv("%s.SAFE.out"%args.output, index=None,sep='\t')
         if status:
-            print "SAFE Done!"
+            print "SAFE completed successfully."
     else:
         if (NumSNPs < args.MinRegionSize_ps) | (total_window_size < args.MinRegionSize_bp):
             raise ValueError((
@@ -208,5 +214,8 @@ def run():
             psi_k1 = obj_isafe.creat_psi_k1_dataframe()
             psi_k1.index.rename("#POS", inplace=True)
             psi_k1.to_csv("%s.Psi.out"%args.output, sep='\t')
+        if status:
+            sys.stdout.write(time.ctime()+'\n')
+            sys.stdout.write('-~' * 30+'\n')
 if __name__ == '__main__':
     run()

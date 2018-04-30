@@ -17,11 +17,19 @@ def create_rolling_indices(total_variant_count, w_size, w_step):
     return rolling_indices
 
 
-def creat_windows_summary_stats(snp_matrix, w_size, w_step):
+def creat_windows_summary_stats(snp_matrix, w_size, w_step, step_counter='XX', status=True):
     total_variant_count = snp_matrix.shape[0]
     rolling_indices = create_rolling_indices(total_variant_count, w_size, w_step)
     windows_stats = {}
+    progress0 = 0
     for i, I in enumerate(rolling_indices):
+        progress = np.round(100.0 * i / len(rolling_indices))
+        if (progress>progress0):
+            if status:
+                sys.stdout.write("\r\tStep %s: %.2i%%" % (step_counter, progress))
+                sys.stdout.flush()
+            progress0 = progress
+
         window_i_stats = {}
         df = snp_matrix.iloc[I]
         snp_matrix_i = df.values.T
@@ -65,9 +73,16 @@ def isafe_kernel(haf, snp):
     p = (phi - kappa) / sigma
     return p
 
-def creat_matrix_Psi_k(M, Dw, Ifp):
+def creat_matrix_Psi_k(M, Dw, Ifp, step_counter='XX', status=True):
     P = np.zeros((len(Ifp), len(Dw)))
+    progress0 = 0
     for i in range(len(Ifp)):
+        progress = np.round(100.0 * i / len(Ifp))
+        if (progress>progress0):
+            if status:
+                sys.stdout.write("\r\tStep %s: %.2i%%" % (step_counter, progress))
+                sys.stdout.flush()
+            progress0 = progress
         for j in Dw.keys():
             output = isafe_kernel(Dw[j]["haf"], M[:, Ifp[i]])
             P[i, j] = output
@@ -78,48 +93,48 @@ def step_function(P0):
     P[P < 0] = 0
     return P
 
-def apply_isafe(snp_matrix, w_size, w_step, top_k1, top_k2, status = False):
-    if status:
-        toolbar_width = 4
-        sys.stdout.write("[%s]" % (" " * toolbar_width))
-        sys.stdout.flush()
-        sys.stdout.write("\b" * (toolbar_width + 1))
-        sys.stdout.write("-")
-        sys.stdout.flush()
-    WS = creat_windows_summary_stats(snp_matrix, w_size, w_step)
-    if status:
-        sys.stdout.write("-")
-        sys.stdout.flush()
-    df_snps = creat_snps_information_df(WS)
-    df_top_k1 = get_top_k_snps_in_each_window(df_snps, k=top_k1)
-    cand_snp_k1 = np.sort(df_top_k1["ordinal_pos"].unique())
-    Psi_k1 = creat_matrix_Psi_k(snp_matrix.values.T, WS, cand_snp_k1)
-    if status:
-        sys.stdout.write("-")
-        sys.stdout.flush()
-    df_top_k2 = get_top_k_snps_in_each_window(df_snps, k=top_k2)
-    temp = np.sort(df_top_k2["ordinal_pos"].unique())
-    cand_snp_k2 = np.sort(np.setdiff1d(temp, cand_snp_k1))
-    Psi_k2 = creat_matrix_Psi_k(snp_matrix.values.T, WS, cand_snp_k2)
-    if status:
-        sys.stdout.write("-")
-        sys.stdout.flush()
-
-
-    alpha = Psi_k1.sum(0) / Psi_k1.sum()
-
-    iSAFE1 = pd.DataFrame(data={"ordinal_pos": cand_snp_k1, "isafe": np.dot(Psi_k1, alpha)})
-    iSAFE2 = pd.DataFrame(data={"ordinal_pos": cand_snp_k2, "isafe": np.dot(Psi_k2, alpha)})
-
-    iSAFE1["tier"] = 1
-    iSAFE2["tier"] = 2
-    iSAFE = pd.concat([iSAFE1, iSAFE2]).reset_index(drop=True)
-    iSAFE["id"] = snp_matrix.iloc[iSAFE["ordinal_pos"]].index
-    freq = snp_matrix.mean(1).values.squeeze()
-    iSAFE["freq"] = freq[iSAFE["ordinal_pos"].values.squeeze()]
-    if status:
-        sys.stdout.write("\niSAFE Done!\n")
-    return iSAFE[["ordinal_pos", "id", "isafe", "freq", "tier"]], Psi_k1
+# def apply_isafe(snp_matrix, w_size, w_step, top_k1, top_k2, status = False):
+#     if status:
+#         toolbar_width = 4
+#         sys.stdout.write("[%s]" % (" " * toolbar_width))
+#         sys.stdout.flush()
+#         sys.stdout.write("\b" * (toolbar_width + 1))
+#         sys.stdout.write("-")
+#         sys.stdout.flush()
+#     WS = creat_windows_summary_stats(snp_matrix, w_size, w_stepcreat_windows_summary_stats)
+#     if status:
+#         sys.stdout.write("-")
+#         sys.stdout.flush()
+#     df_snps = creat_snps_information_df(WS)
+#     df_top_k1 = get_top_k_snps_in_each_window(df_snps, k=top_k1)
+#     cand_snp_k1 = np.sort(df_top_k1["ordinal_pos"].unique())
+#     Psi_k1 = creat_matrix_Psi_k(snp_matrix.values.T, WS, cand_snp_k1)
+#     if status:
+#         sys.stdout.write("-")
+#         sys.stdout.flush()
+#     df_top_k2 = get_top_k_snps_in_each_window(df_snps, k=top_k2)
+#     temp = np.sort(df_top_k2["ordinal_pos"].unique())
+#     cand_snp_k2 = np.sort(np.setdiff1d(temp, cand_snp_k1))
+#     Psi_k2 = creat_matrix_Psi_k(snp_matrix.values.T, WS, cand_snp_k2)
+#     if status:
+#         sys.stdout.write("-")
+#         sys.stdout.flush()
+#
+#
+#     alpha = Psi_k1.sum(0) / Psi_k1.sum()
+#
+#     iSAFE1 = pd.DataFrame(data={"ordinal_pos": cand_snp_k1, "isafe": np.dot(Psi_k1, alpha)})
+#     iSAFE2 = pd.DataFrame(data={"ordinal_pos": cand_snp_k2, "isafe": np.dot(Psi_k2, alpha)})
+#
+#     iSAFE1["tier"] = 1
+#     iSAFE2["tier"] = 2
+#     iSAFE = pd.concat([iSAFE1, iSAFE2]).reset_index(drop=True)
+#     iSAFE["id"] = snp_matrix.iloc[iSAFE["ordinal_pos"]].index
+#     freq = snp_matrix.mean(1).values.squeeze()
+#     iSAFE["freq"] = freq[iSAFE["ordinal_pos"].values.squeeze()]
+#     if status:
+#         sys.stdout.write("\niSAFE Done!\n")
+#     return iSAFE[["ordinal_pos", "id", "isafe", "freq", "tier"]], Psi_k1
 
 class iSafeClass:
     def __init__(self, snp_matrix, w_size, w_step, top_k1, top_k2):
@@ -138,31 +153,30 @@ class iSafeClass:
         self.isafe = None
 
     def fire(self, status=True):
+        step_counter = '1/3'
         if status:
-            toolbar_width = 4
-            sys.stdout.write("[%s]" % (" " * toolbar_width))
-            sys.stdout.flush()
-            sys.stdout.write("\b" * (toolbar_width + 1))
-            sys.stdout.write("-")
-            sys.stdout.flush()
-        self.windows_summary = creat_windows_summary_stats(self.snp_matrix, self.w_size, self.w_step)
+            sys.stdout.write("Data loaded successfully.\nRunning iSAFE:\n")
+        self.windows_summary = creat_windows_summary_stats(self.snp_matrix, self.w_size, self.w_step, step_counter=step_counter,  status=status)
         if status:
-            sys.stdout.write("-")
+            sys.stdout.write("\r\tStep %s: 100%%\n"%(step_counter))
             sys.stdout.flush()
         self.snps_summary = creat_snps_information_df(self.windows_summary)
         df_top_k1 = get_top_k_snps_in_each_window(self.snps_summary, k=self.top_k1)
         self.ordinal_pos_snps_k1 = np.sort(df_top_k1["ordinal_pos"].unique())
-        self.psi_k1 = creat_matrix_Psi_k(self.snp_matrix.values.T, self.windows_summary, self.ordinal_pos_snps_k1)
+        step_counter = '2/3'
+        self.psi_k1 = creat_matrix_Psi_k(self.snp_matrix.values.T, self.windows_summary, self.ordinal_pos_snps_k1, step_counter=step_counter,  status=status)
         if status:
-            sys.stdout.write("-")
+            sys.stdout.write("\r\tStep %s: 100%%\n"%step_counter)
             sys.stdout.flush()
         df_top_k2 = get_top_k_snps_in_each_window(self.snps_summary, k=self.top_k2)
         temp = np.sort(df_top_k2["ordinal_pos"].unique())
         self.ordinal_pos_snps_k2 = np.sort(np.setdiff1d(temp, self.ordinal_pos_snps_k1))
-        self.psi_k2 = creat_matrix_Psi_k(self.snp_matrix.values.T, self.windows_summary, self.ordinal_pos_snps_k2)
+        step_counter = '3/3'
+        self.psi_k2 = creat_matrix_Psi_k(self.snp_matrix.values.T, self.windows_summary, self.ordinal_pos_snps_k2, step_counter=step_counter, status=status)
         if status:
-            sys.stdout.write("-")
+            sys.stdout.write("\r\tStep %s: 100%%\n" % step_counter)
             sys.stdout.flush()
+
         self.alpha = self.psi_k1.sum(0) / self.psi_k1.sum()
 
         iSAFE1 = pd.DataFrame(data={"ordinal_pos": self.ordinal_pos_snps_k1, "isafe": np.dot(self.psi_k1, self.alpha)})
@@ -175,7 +189,7 @@ class iSafeClass:
         freq = self.snp_matrix.mean(1).values.squeeze()
         iSAFE["freq"] = freq[iSAFE["ordinal_pos"].values.squeeze()]
         if status:
-            sys.stdout.write("\niSAFE Done!\n")
+            sys.stdout.write("iSAFE completed successfully.\n")
         self.isafe = iSAFE[["ordinal_pos", "id", "isafe", "freq", "tier"]]
 
     def creat_psi_k1_dataframe(self):
