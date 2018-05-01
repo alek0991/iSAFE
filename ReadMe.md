@@ -4,6 +4,8 @@ Most approaches that capture signatures of selective sweeps in population genomi
 - Akbari, Ali, Joseph J. Vitti, Arya Iranmehr, Mehrdad Bakhtiari, Pardis C. Sabeti, Siavash Mirarab, and Vineet Bafna. "Identifying the favored mutation in a positive selective sweep." [Nature Methods (2018)](https://doi.org/10.1038/nmeth.4606).
 - Contact: Ali Akbari (alakbari@ucsd.edu). If I can be of assistance, please do not hesitate to contact me.
 
+iSAFE [Frequently asked questions (FAQ)](https://github.com/alek0991/iSAFE/blob/master/FAQ.md)
+==========
 
 Software requirements
 ==========
