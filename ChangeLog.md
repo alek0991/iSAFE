@@ -1,3 +1,5 @@
+* Version 1.0.3
+    - Handling male (haploid) samples for chromosome X.
 * Version 1.0.2
     - Track execution progress and fixing minor bugs.
 * Version 1.0.1

@@ -9,6 +9,22 @@ def get_sample_IDs(the_vcf):
     cmd = "%s query -l %s"%(bcf_tools, the_vcf)
     return os.popen(cmd).read().split()
 
+def get_diploid_chrX(target_region, sample_arg, the_vcf):
+    cmd = "%s query" % bcf_tools
+    cmd += " -r %s" % target_region
+    cmd += sample_arg
+    cmd += " -i 'N_ALT==1'"
+    cmd += " -f '%POS[\\t%GT]\\n'"
+    cmd += " %s" % (the_vcf)
+    cmd += " | head -n 1"
+    hd1 = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None).values[0,1:]
+    diploid = []
+    for x in hd1:
+        if str(x).__contains__('|'):
+            diploid+=[True]
+        else:
+            diploid += [False]
+    return diploid
 
 def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
     if samples == []:
@@ -20,9 +36,6 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
         sample_arg = " -s %s" % (','.join(str(x) for x in samples))
         sample_IDs = samples
 
-    header = ["CHROM", "POS", "ID", "REF", "ALT"]
-    for id in sample_IDs:
-        header += [id, id]
 
     target_region = "%s:%i-%i" % (chrom, region_start, region_end)
     cmd = "%s query" % bcf_tools
@@ -35,6 +48,18 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
     cmd += " %s" % (the_vcf)
     cmd += " | tr '|' '\\t'"
     df = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None)
+
+    header = ["CHROM", "POS", "ID", "REF", "ALT"]
+    if chrom in ['X','chrX']:
+        diploid = get_diploid_chrX(target_region, sample_arg, the_vcf)
+        for i, id in enumerate(sample_IDs):
+            if diploid[i]:
+                header += [id, id]
+            else:
+                header += [id]
+    else:
+        for i, id in enumerate(sample_IDs):
+            header += [id, id]
     df.columns = header
     return df,sample_IDs
 
