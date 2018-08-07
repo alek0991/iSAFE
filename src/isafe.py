@@ -130,8 +130,8 @@ def run():
             raise ImportError("vcf format only accepts indexed bgzipped VCF file (.vcf.gz along with tabix index file .vcf.gz.tbi)")
         if not os.path.exists("%s"%(args.input)):
             raise ImportError("%s doesn't exist!"%(args.input))
-        if not os.path.exists("%s.tbi"%(args.input)):
-            raise ImportError("tabix index file .vcf.gz.tbi is required along with bgzipped vcf file .vcf.gz")
+        # if not os.path.exists("%s.tbi"%(args.input)):
+        #     raise ImportError("tabix index file .vcf.gz.tbi is required along with bgzipped vcf file .vcf.gz")
         if args.AA is None:
             parser.error("--AA must be provided when input format is vcf.")
         if args.region is None:

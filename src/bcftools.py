@@ -131,6 +131,7 @@ def get_AA_df(AA_file, df):
         AA += [ref_ch[pos - 1]]
     dfAA = pd.DataFrame([POS,AA]).T
     dfAA.columns=["POS", "AA"]
+    dfAA['POS'] = dfAA['POS'].astype(int)
     df2 = df.iloc[:,[0,1]]
     df2.columns=[0,1]
     df2 = df2.reset_index()
