@@ -17,7 +17,6 @@ Software requirements
      [line](https://github.com/alek0991/iSAFE/blob/b54f60f8f274ab248e308f6e953ff018d1b577c7/src/bcftools.py#L6) in ```./src/bcftools.py``` to the bcftools binary file path: 
     ```python
     bcf_tools = "bcftools"
-
     ```    
 
 Execution:
