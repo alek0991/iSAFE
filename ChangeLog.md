@@ -1,3 +1,5 @@
+* Version 1.0.4
+    - Raise error for inconsistent ploidy, non-biallelic, empty region. 
 * Version 1.0.3
     - Handling male (haploid) samples for chromosome X.
 * Version 1.0.2

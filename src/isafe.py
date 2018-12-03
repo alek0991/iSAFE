@@ -14,7 +14,7 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.3'
+                                                 '\niSAFE v1.0.4'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
@@ -189,6 +189,10 @@ def run():
     NumSNPs = snp_matrix.shape[0]
     if status:
         print "%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1])
+    if NumSNPs<=1:
+        raise ImportError("There is only %i variant in the target region!"%NumSNPs)
+    if NumSNPs<=100:
+        warnings.warn("There are only %i variants in the target region!"%NumSNPs)
 
     if args.SAFE:
         if not args.WarningOff:

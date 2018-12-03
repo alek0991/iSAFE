@@ -9,22 +9,22 @@ def get_sample_IDs(the_vcf):
     cmd = "%s query -l %s"%(bcf_tools, the_vcf)
     return os.popen(cmd).read().split()
 
-def get_diploid_chrX(target_region, sample_arg, the_vcf):
-    cmd = "%s query" % bcf_tools
+
+def get_ploidy(target_region, sample_arg, the_vcf):
+    cmd = "%s view" % bcf_tools
     cmd += " -r %s" % target_region
     cmd += sample_arg
     cmd += " -i 'N_ALT==1'"
-    cmd += " -f '%POS[\\t%GT]\\n'"
     cmd += " %s" % (the_vcf)
-    cmd += " | head -n 1"
-    hd1 = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None).values[0,1:]
-    diploid = []
-    for x in hd1:
-        if str(x).__contains__('|'):
-            diploid+=[True]
-        else:
-            diploid += [False]
-    return diploid
+    cmd += " | %s plugin check-ploidy"%bcf_tools
+    dfp = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t')
+    dfp.columns = ['Sample', 'Chromosome', 'Region Start', 'Region End', 'Ploidy']
+    id, count = np.unique(dfp['Sample'], return_counts=True)
+    mixed_ploidy_samples = id[count > 1]
+    if len(mixed_ploidy_samples)>0:
+        raise ImportError("Ploidy inconsistency error (haploid and diploid sites together in a sample): Mixed ploidy in samples %s"%mixed_ploidy_samples)
+    else:
+        return dfp.set_index('Sample')['Ploidy']
 
 def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
     if samples == []:
@@ -36,8 +36,9 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
         sample_arg = " -s %s" % (','.join(str(x) for x in samples))
         sample_IDs = samples
 
-
     target_region = "%s:%i-%i" % (chrom, region_start, region_end)
+    ploidy = get_ploidy(target_region, sample_arg, the_vcf)
+
     cmd = "%s query" % bcf_tools
     cmd += " -r %s" % target_region
     cmd += sample_arg
@@ -47,20 +48,17 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
     cmd += " -f '%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT[\\t%GT]\\n'"
     cmd += " %s" % (the_vcf)
     cmd += " | tr '|' '\\t'"
-    df = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None)
-
+    try:
+        df = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None)
+    except pd.io.common.EmptyDataError:
+        raise ImportError("There are no variants in the target region %s!"%target_region)
     header = ["CHROM", "POS", "ID", "REF", "ALT"]
-    if chrom in ['X','chrX']:
-        diploid = get_diploid_chrX(target_region, sample_arg, the_vcf)
-        for i, id in enumerate(sample_IDs):
-            if diploid[i]:
-                header += [id, id]
-            else:
-                header += [id]
-    else:
-        for i, id in enumerate(sample_IDs):
-            header += [id, id]
+    for i, id in enumerate(sample_IDs):
+        header += [id]*ploidy.loc[id]
     df.columns = header
+    Alleles = np.unique(["%s" % x for x in np.unique(df[sample_IDs].values.reshape(-1))])
+    if len(np.setdiff1d(Alleles, ['0', '1']))>0:
+        raise ImportError("Input is not biallelic (0 and 1). Allele set = %s"%Alleles)
     return df,sample_IDs
 
 
