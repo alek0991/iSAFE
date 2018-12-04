@@ -52,13 +52,16 @@ def load_vcf_as_df(the_vcf, chrom, region_start, region_end, samples=None):
         df = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t', header=None)
     except pd.io.common.EmptyDataError:
         raise ImportError("There are no variants in the target region %s!"%target_region)
+
+    Alleles = np.unique(["%s" % x for x in np.unique(df.iloc[:, 5:].values.reshape(-1))])
+
+    if len(np.setdiff1d(Alleles, ['0', '1']))>0:
+        raise ImportError("Input is not biallelic (0 and 1). Allele set = %s"%Alleles)
+
     header = ["CHROM", "POS", "ID", "REF", "ALT"]
     for i, id in enumerate(sample_IDs):
         header += [id]*ploidy.loc[id]
     df.columns = header
-    Alleles = np.unique(["%s" % x for x in np.unique(df[sample_IDs].values.reshape(-1))])
-    if len(np.setdiff1d(Alleles, ['0', '1']))>0:
-        raise ImportError("Input is not biallelic (0 and 1). Allele set = %s"%Alleles)
     return df,sample_IDs
 
 
