@@ -1,5 +1,5 @@
 
-Frequently asked questions (FAQ)
+FAQ – frequently asked questions
 =============
 <h4>Q: Do I have to add random samples?</h4> 
 
