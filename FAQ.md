@@ -44,7 +44,12 @@ Does iSAFE program handle haploid samples?
 
 >Yes, when ploidy is consistent for all samples over all sites the program automatically handles ploidy. 
 You can use the [```bcftools plugin check-ploidy```](http://samtools.github.io/bcftools/howtos/plugins.html) 
-to check ploidy of your target region. In the output if a sample You should sort its output by the first 
+to check ploidy of your target region. For example, 
+
+```sh
+bcftools plugin check-ploidy -r X:2574133-5074133 chrX.vcf.gz
+```
+>
+>In the output if a sample You should sort its output by the first 
 column ("[1]Sample") to see whether your file is consistent over all sites or not. 
 For example, if one sample have more than a ploidy in different region of your file it is inconsistent.
-```bcftools plugin check-ploidy -r X:2574133-5074133 ./ALL.chrX.phase3_shapeit2_mvncall_integrated_v1b.20130502.genotypes.vcf.gz```
