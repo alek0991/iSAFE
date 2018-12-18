@@ -48,4 +48,4 @@ You can use the [```bcftools plugin check-ploidy```](http://samtools.github.io/b
 to check ploidy of your target region. For example, in the first column ("[1]Sample") of the output of the following 
 command all the values must be unique, otherwise ploidy is inconsistent for repeated samples.
 >
-> ```bcftools plugin check-ploidy -r X:2574133-5074133 chrX.vcf.gz```
+> ```bcftools plugin check-ploidy -r X:2000000-5000000 chrX.vcf.gz```
