@@ -125,9 +125,9 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 
 Frequently asked questions (FAQ)
 =============
-<h5>Which outgroup populations should we use?</h5> 
+<h4>Which outgroup populations should we use?</h4> 
 
-In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of the iSAFE paper we mentioned that "in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations." For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever populations or combination you prefer. Just make sure there are not shared samples between the target population samples and outgroup samples, otherwise the program raise the following error:
+In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of the iSAFE paper we mentioned that "in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations." For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not shared samples between the target population samples and outgroup samples, otherwise the program raise the following error:
 
    ```sh
    --sample-case and/or --sample-cont have shared/duplicated samples.
