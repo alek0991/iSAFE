@@ -12,6 +12,7 @@ Do I have to add random samples?
 <h4>Questions: </h4>
 Which outgroup populations should we use?
 
+
 >In the [online methods](https://www.nature.com/articles/nmeth.4606#methods): Section *Adding outgroup samples* we mentioned that "*in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations.*" For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
 ```Error: --sample-case and/or --sample-cont have shared/duplicated samples.```  Also make sure to use the rigth format for the [sample ID file](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md). 
 
