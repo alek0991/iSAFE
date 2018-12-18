@@ -19,7 +19,7 @@ FAQ – frequently asked questions
 
 <h4>Q: Should we change the default value of MaxRank parameter?</h4>
 
->In most of the cases, the default value for ```MaxRank=15``` works just fine and the favored mutation is included. By setting ```MaxRank=300``` ( or whatever value &#8805; ``` WINDOW```, default: 300) you make sure that you are not missing the favored mutation 100%, however the computation time increases linearly with this parameter.
+>In most of the cases, the default value for ```MaxRank=15``` works just fine and the favored mutation is included. By setting ```MaxRank=300```, or whatever value &#8805; ``` WINDOW``` (default: 300), you make sure that you are not missing the favored mutation 100%, however the computation time increases linearly with this parameter.
 
 <h4>Q: When I try to run my vcf files the result is "Error: There are i gaps with size greater than 10kbp."</h4>
  
