@@ -1,10 +1,8 @@
 
 FAQ – frequently asked questions
 =============
-<h4>Q</h4>
-
-<h4>Q</h4>
-
+<h4>Questions: </h4> 
+Do I have to add random samples?
 >When the favored mutation is near fixation (or fixed) the performance of the iSAFE decays. Not surprisingly, adding random sample from outgroup populations improves the iSAFE performance when frequency of the favored mutation is high. Because iSAFE is comparing diversity of carriers and non-carriers of mutations  and without outgroup samples we don't have any (or enough) outgroup samples when the favored mutation is fixed (or at high frequency). Besides, not using outgroup samples (cross-population information) is a waste of (orthogonal) information, specifically for human populations with all these valuable resources like 1000GP. 
 >However, when frequency of the favored mutation is not high (low or moderate), adding random samples doesn't help. For more details see [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6) and [online methods](https://www.nature.com/articles/nmeth.4606#methods): Section *Adding outgroup samples*.
 >
@@ -28,5 +26,3 @@ FAQ – frequently asked questions
 <h4>Q: When I try to run my vcf files the result is "Error: There are i gaps with size greater than 10kbp."</h4>
  
 >When there is a gap larger than ```--MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
-
-<h4>Q</h4>
