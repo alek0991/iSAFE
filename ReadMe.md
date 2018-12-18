@@ -8,7 +8,7 @@ Most approaches that capture signatures of selective sweeps in population genomi
 
 [FAQ – frequently asked questions](https://github.com/alek0991/iSAFE/blob/master/FAQ.md)
 ==========
-Please read the [FAQ]((https://github.com/alek0991/iSAFE/blob/master/FAQ.md)) for answers to the most common queries.
+Please read the [FAQ](https://github.com/alek0991/iSAFE/blob/master/FAQ.md) for answers to the most common queries.
 
 Software requirements
 ==========
