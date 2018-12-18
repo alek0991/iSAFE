@@ -10,7 +10,7 @@ FAQ – frequently asked questions
 
 <h4>Q: Which outgroup populations should we use?</h4>
 
->In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of the iSAFE paper we mentioned that "*in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations.*" For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
+>In the [online methods](https://www.nature.com/articles/nmeth.4606#methods): Section *Adding outgroup samples* of the iSAFE paper we mentioned that "*in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations.*" For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
 ```Error: --sample-case and/or --sample-cont have shared/duplicated samples.```  Also make sure to use the rigth format for the [sample ID file](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md). 
 
 <h4>Q: Can we change the default values of RandomSampleRate or MaxFreq parameters?</h4>
