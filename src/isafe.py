@@ -180,10 +180,10 @@ def run():
         total_window_size / 1e6, args.MaxRegionSize / 1e6))
     if num_gaps>0:
         if not args.IgnoreGaps:
-            raise ValueError("There is %i gaps with size greater than %ikbp. Set --IgnoreGaps flag to ignore gaps."%(num_gaps, args.MaxGapSize/1e3))
+            raise ValueError("There are %i gaps with size greater than %ikbp. Set --IgnoreGaps flag to ignore gaps."%(num_gaps, args.MaxGapSize/1e3))
         else:
             if not args.WarningOff:
-                warnings.warn("Warning: There is %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
+                warnings.warn("Warning: There are %i gaps with size greater than %ikbp." % (num_gaps, args.MaxGapSize/ 1e3))
     f = snp_matrix.mean(1)
     snp_matrix = snp_matrix.loc[((1 - f) * f) > 0]
     NumSNPs = snp_matrix.shape[0]
