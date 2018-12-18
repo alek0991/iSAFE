@@ -33,6 +33,6 @@ Should we change the default value of ```MaxRank``` parameter?
 
 <h4>Questions: </h4>
 
-When I try to run my vcf files the result is ```Error: There are i gaps with size greater than 10kbp.```
+When I try to run my vcf files the result is ```Error: There are <i> gaps with size greater than 10kbp.```
  
 >When there is a gap larger than ```--MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
