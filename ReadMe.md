@@ -122,3 +122,13 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 
 * ```--input``` and ```--vcf-cont``` can point to the same vcf file or different ones. In case they are the same, ```--sampe-case``` and ```--sample-cont``` are mandatory.
 * Position of the [putative favored mutation in the FIN population](http://www.nature.com/ng/journal/v30/n2/full/ng826.html) for the selective sweep around LCT/MCM6 locus is 136,608,646 (GRCh37/hg19) of chromosome 2.
+
+Frequently asked questions (FAQ)
+=============
+Q: Which outgroup populations should we use?
+   * In the online methods of the iSAFE paper we mentioned that "in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations." For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever populations or combination you prefer. Just make sure there are not shared samples between the target population samples and outgroup samples, otherwise the program raise the following error:
+   ```angular2html
+   --sample-case and/or --sample-cont have shared/duplicated samples.
+```
+*  
+
