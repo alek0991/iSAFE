@@ -5,6 +5,11 @@ Most approaches that capture signatures of selective sweeps in population genomi
 - [FAQ – frequently asked questions](https://github.com/alek0991/iSAFE/blob/master/FAQ.md). Please read the FAQ for answers to the most common queries.
 - Contact: Ali Akbari (alakbari@ucsd.edu). If I can be of assistance, please do not hesitate to contact me.
 
+
+[FAQ – frequently asked questions](https://github.com/alek0991/iSAFE/blob/master/FAQ.md)
+==========
+Please read the [FAQ]((https://github.com/alek0991/iSAFE/blob/master/FAQ.md)) for answers to the most common queries.
+
 Software requirements
 ==========
 1. ```Python2.7``` and the following packages are required:
