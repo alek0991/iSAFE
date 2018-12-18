@@ -115,7 +115,7 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 
 <h4>Scenario 2: A subset of samples</h4>
  
- A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population:
+A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population:
 - The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population.
 
 ```sh
