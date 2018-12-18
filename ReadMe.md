@@ -129,6 +129,6 @@ Frequently asked questions (FAQ)
    * In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of the iSAFE paper we mentioned that "in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations." For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever populations or combination you prefer. Just make sure there are not shared samples between the target population samples and outgroup samples, otherwise the program raise the following error:
    ```sh
    --sample-case and/or --sample-cont have shared/duplicated samples.
-```  
+   ```  
 
 
