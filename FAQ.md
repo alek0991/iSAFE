@@ -42,12 +42,10 @@ When I try to run my vcf files the result is ```Error: There are <i> gaps with s
 
 Does iSAFE program handle haploid samples?
 
->Yes, when ploidy is consistent for all samples over all sites the program automatically handles ploidy. 
+>Yes, when ploidy is consistent for all samples over all sites the program automatically handles ploidy.
+ If one sample have more than a ploidy in different region of your file it is inconsistent. 
 You can use the [```bcftools plugin check-ploidy```](http://samtools.github.io/bcftools/howtos/plugins.html) 
-to check ploidy of your target region. For example, 
+to check ploidy of your target region. For example, in the first column ("[1]Sample") of the output of the following 
+command all the values must be unique, otherwise ploidy is not consistent for those which are repeated.
 >
 > ```bcftools plugin check-ploidy -r X:2574133-5074133 chrX.vcf.gz```
->
->In the output if a sample You should sort its output by the first 
-column ("[1]Sample") to see whether your file is consistent over all sites or not. 
-For example, if one sample have more than a ploidy in different region of your file it is inconsistent.
