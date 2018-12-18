@@ -125,6 +125,10 @@ python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --re
 
 Frequently asked questions (FAQ)
 =============
+<h4>Q: Do I have to add random samples?</h4> 
+
+You don't have to add random samples, however when the favored mutation is near fixation (or fixed) the performance of the iSAFE decays. As we discussed in the [online methods](https://www.nature.com/articles/nmeth.4606#methods) and [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6), adding random sample from outgroup populations dramatically improves the iSAFE performance. Given proper outgroup populations (using ```--vcf-cont```and ```--sample-cont``` arguments) the program calculates Eq. 6 ([online methods](https://www.nature.com/articles/nmeth.4606#methods)) and automatically decides whether random samples are required or not.   
+
 <h4>Q: Which outgroup populations should we use?</h4> 
 
 In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of the iSAFE paper we mentioned that "in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations." For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
