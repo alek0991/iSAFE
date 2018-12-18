@@ -25,7 +25,7 @@ Can we change the default values of ```RandomSampleRate``` or ```MaxFreq``` para
 
 <h4>Questions: </h4>
 
-Should we change the default value of MaxRank parameter?
+Should we change the default value of ```MaxRank``` parameter?
 
 >The ```MaxRank``` parameter is defined to control the computation time and it increases linearly with this parameter. The program doesn't calculate iSAFE score for a SNP that its SAFE-score is not in the top-15 (top-MaxRank) in windows overlapping the SNP. The default value of sliding window size is ```window=300``` segregating sites. 
 >
@@ -33,6 +33,6 @@ Should we change the default value of MaxRank parameter?
 
 <h4>Questions: </h4>
 
-When I try to run my vcf files the result is "Error: There are i gaps with size greater than 10kbp.
+When I try to run my vcf files the result is ```Error: There are i gaps with size greater than 10kbp.```
  
 >When there is a gap larger than ```--MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
