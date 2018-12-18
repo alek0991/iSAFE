@@ -122,7 +122,7 @@ A subset of samples (```--sample-case```) of the ```--input``` vcf file as the c
 python2.7 ./src/isafe.py --input <chr2 vcf file> --output ./example/vcf/LCT --region 2:134108646-139108646 --AA <chr2 Ancestral Allele file> --sample-case ./example/vcf/case.sample
 ```
 
-<h4>Scenario 3: Adding outgroup samples </h4>
+<h4>Scenario 3: Adding outgroup samples</h4>
  
  A subset of samples (```--sample-case```) of the ```--input``` vcf file as the case population and a subset of samples (```--sample-cont```) of the ```--vcf-cont``` vcf file as the control population:
 - The following command apply iSAFE on 5Mbp region around LCT/MCM6 locus in FIN population of 1000GP as the case population and YRI, CHB, PEL, and GIH as the control populations.
