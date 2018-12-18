@@ -3,7 +3,7 @@ FAQ – frequently asked questions
 =============
 <h4>Questions: </h4> 
 
-####Q
+###Q
 
 Do I have to add random samples?
 
