@@ -137,11 +137,13 @@ In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of t
    --sample-case and/or --sample-cont have shared/duplicated samples.
    ```  
 
-<h4>Q: Can we change the default values for RandomSampleRate or MaxFreq parameters?</h4>
+<h4>Q: Can we change the default values of RandomSampleRate or MaxFreq parameters?</h4>
 
 The default values for ```RandomSampleRate=0.10``` and for ```MaxFreq=0.95```, and it is fine to change them. When we add random samples, as a rule of thumb, I usually set ```MaxFreq = (1-RandomSampleRate/2)``` , to minimize the noise due to adding outgroups.
 
-<h4>Q: Should we change the default value MaxRank parameter?</h4>
+<h4>Q: Should we change the default value of MaxRank parameter?</h4>
+
+In most of the cases, the default value for MaxRank=15 works just fine and the favored mutation is included. By setting ```MaxRank=300``` ( or whatever value &#8805; ``` WINDOW```, default: 300) you make sure that you are not missing the favored mutation 100%, however the computation time increases linearly with this parameter.
 
 <h4>Q: When I try to run my vcf files the result is "ValueError: There are i gaps with size greater than 10kbp."</h4>
  
