@@ -134,6 +134,6 @@ In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of t
    ```  
 
 
-<h4>Q: When I try to run my vcf files the result is "ValueError: There are *n* gaps with size greater than 10kbp."</h4>
+<h4>Q: When I try to run my vcf files the result is "ValueError: There are _n_ gaps with size greater than 10kbp."</h4>
  
 When there is a gap larger than ```--MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
