@@ -6,7 +6,7 @@ FAQ – frequently asked questions
 Do I have to add random samples?
 
 >When the favored mutation is near fixation (or fixed) the performance of the iSAFE decays. Not surprisingly, adding random sample from outgroup populations improves the iSAFE performance when frequency of the favored mutation is high. Because iSAFE is comparing diversity of carriers and non-carriers of mutations  and without outgroup samples we don't have any (or enough) outgroup samples when the favored mutation is fixed (or at high frequency). Besides, not using outgroup samples (cross-population information) is a waste of (orthogonal) information, specifically for human populations with all these valuable resources like 1000GP. 
->However, when frequency of the favored mutation is not high (low or moderate), adding random samples doesn't help. For more details see [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6) and [online methods](https://www.nature.com/articles/nmeth.4606#methods): Section *Adding outgroup samples*.
+>However, when frequency of the favored mutation is not high (low or moderate), adding random samples doesn't help. For more details see [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6) and Section *Adding outgroup samples* from [online methods](https://www.nature.com/articles/nmeth.4606#methods).
 >
 >Given proper outgroup populations (using ```--vcf-cont```and ```--sample-cont``` arguments) the program calculates Eq. 6 ([online methods](https://www.nature.com/articles/nmeth.4606#methods)) and automatically decides whether random samples are required or not. As an example see the [**Scenario 3 of the Demo 2**](https://github.com/alek0991/iSAFE#demo-2-input-in-vcf-format).
 
@@ -14,7 +14,7 @@ Do I have to add random samples?
 
 Which outgroup populations should we use?
 
->In the [online methods](https://www.nature.com/articles/nmeth.4606#methods): Section *Adding outgroup samples* we mentioned that "*in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations.*" For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
+>In the Section *Adding outgroup samples* from [online methods](https://www.nature.com/articles/nmeth.4606#methods), we mentioned that "*in testing on the phase 3 1000GP data, we chose outgroup samples from non-target 1000GP populations.*" For example for East-Asian sub-populations (like CHB+JPT) you can use AFR+AMR+EUR+SAS populations, or whatever combination of populations you prefer. Just make sure there are not any shared samples between the target population samples and outgroup samples, otherwise the program raises the following error:
 ```Error: --sample-case and/or --sample-cont have shared/duplicated samples.```  Also make sure to use the rigth format for the [sample ID file](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md). 
 
 <h4>Questions: </h4>
