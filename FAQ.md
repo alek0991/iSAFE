@@ -12,7 +12,7 @@ In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of t
    ```sh
    --sample-case and/or --sample-cont have shared/duplicated samples.
    ```  
-
+Also make sure to use the rigth format the [sample ID file](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md). 
 <h4>Q: Can we change the default values of RandomSampleRate or MaxFreq parameters?</h4>
 
 The default values for ```RandomSampleRate=0.10``` and for ```MaxFreq=0.95```, and it is fine to change them. As a rule of thumb, I usually set ```MaxFreq = (1-RandomSampleRate/2)``` , to minimize the noise due to adding outgroups.
