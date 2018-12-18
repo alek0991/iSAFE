@@ -21,7 +21,7 @@ FAQ – frequently asked questions
 
 >The ```MaxRank``` parameter is defined to control the computation time and it increases linearly with this parameter. The program doesn't calculate iSAFE score for a SNP that its SAFE-score is not in the top-15 (top-MaxRank) in windows overlapping the SNP. The default value of sliding window size is ```window=300``` segregating sites. 
 >
->In most of the cases, the default value for ```MaxRank=15``` works just fine and the favored mutation is included and its iSAFE score is calculated and reported in the output file. In some rare cases you might not capture the favored mutation with the default value (```MaxRank=15```). Therefore you can make sure that you are not missing the favored mutation 100%, by setting ```MaxRank=300```, or whatever value &#8805; ``` window``` (default: 300).
+>In most of the cases (&gt;99%, See [Figure 1e](https://www.nature.com/articles/nmeth.4606/figures/1)), the default value for ```MaxRank=15``` works just fine and the favored mutation is included and its iSAFE score is calculated and reported in the output file. In some rare cases you might not capture the favored mutation with the default value (```MaxRank=15```). Therefore you can make sure that you are not missing the favored mutation 100%, by setting ```MaxRank=300```, or whatever value &#8805; ``` window``` (default: 300).
 
 <h4>Q: When I try to run my vcf files the result is "Error: There are i gaps with size greater than 10kbp."</h4>
  
