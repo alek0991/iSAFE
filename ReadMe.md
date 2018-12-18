@@ -127,7 +127,7 @@ Frequently asked questions (FAQ)
 =============
 <h4>Q: Do I have to add random samples?</h4> 
 
-You don't have to add random samples, however when the favored mutation is near fixation (or fixed) the performance of the iSAFE decays. As we discussed in the [online methods](https://www.nature.com/articles/nmeth.4606#methods) and [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6), adding random sample from outgroup populations dramatically improves the iSAFE performance. Given proper outgroup populations (using ```--vcf-cont```and ```--sample-cont``` arguments) the program calculates Eq. 6 ([online methods](https://www.nature.com/articles/nmeth.4606#methods)) and automatically decides whether random samples are required or not. As an example see the Scenario 3 of the [Demo 2](https://github.com/alek0991/iSAFE#demo-2-input-in-vcf-format).  
+When the favored mutation is near fixation (or fixed) the performance of the iSAFE decays. As we discussed in the [online methods](https://www.nature.com/articles/nmeth.4606#methods) and [Supplementary Figure 3e](https://www.nature.com/articles/nmeth.4606/figures/6), adding random sample from outgroup populations dramatically improves the iSAFE performance. Given proper outgroup populations (using ```--vcf-cont```and ```--sample-cont``` arguments) the program calculates Eq. 6 ([online methods](https://www.nature.com/articles/nmeth.4606#methods)) and automatically decides whether random samples are required or not. As an example see the Scenario 3 of the [Demo 2](https://github.com/alek0991/iSAFE#demo-2-input-in-vcf-format).  
 
 <h4>Q: Which outgroup populations should we use?</h4> 
 
