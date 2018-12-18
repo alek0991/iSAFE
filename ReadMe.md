@@ -137,6 +137,10 @@ In the [online methods](https://www.nature.com/articles/nmeth.4606#methods) of t
    --sample-case and/or --sample-cont have shared/duplicated samples.
    ```  
 
+<h4>Q: Can we change the default values for RandomSampleRate or MaxFreq parameters?</h4>
+
+The default values for ```RandomSampleRate=0.10``` and for ```MaxFreq=0.95```, and it is fine to change them. As a rule of thumb, I usually set ```MaxFreq = (1-RandomSampleRate/2)```, to minimize the noise due to adding outgroups.
+
 
 <h4>Q: When I try to run my vcf files the result is "ValueError: There are i gaps with size greater than 10kbp."</h4>
  
