@@ -51,6 +51,7 @@ command all the values must be unique, otherwise ploidy is inconsistent for repe
 > ```bcftools plugin check-ploidy -r X:2000000-5000000 chrX.vcf.gz```
 
 <h4>Questions: </h4>
+
 When should I use the ```--SAFE``` flag?
 > In [Figure 2c](https://www.nature.com/articles/nmeth.4606/figures/2) we have evaluated the performance of SAFE and iSAFE as a function of the window size. 
 iSAFE exploits shoulders of the sweep using the SAFE score as a building block and it performance stays robust with increasing window size. 
