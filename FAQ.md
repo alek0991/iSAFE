@@ -33,25 +33,6 @@ Should we change the default value of ```MaxRank``` parameter?
 
 <h4>Questions: </h4>
 
-When I try to run my vcf files the result is ```Error: There are <i> gaps with size greater than 10kbp.```
- 
->When there is a gap larger than ```MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
-
-
-<h4>Questions: </h4>
-
-Does iSAFE program handle haploid samples?
-
->Yes, when ploidy is consistent for all samples over all sites the program automatically handles ploidy.
- If one sample have more than a ploidy in different region of your file it is inconsistent. 
-You can use the [```bcftools plugin check-ploidy```](http://samtools.github.io/bcftools/howtos/plugins.html) 
-to check ploidy of your target region. For example, in the first column ("[1]Sample") of the output of the following 
-command all the values must be unique, otherwise ploidy is inconsistent for repeated samples.
->
-> ```bcftools plugin check-ploidy -r X:2000000-5000000 chrX.vcf.gz```
-
-<h4>Questions: </h4>
-
 When should I use the ```--SAFE``` flag?
 > In [Figure 2c](https://www.nature.com/articles/nmeth.4606/figures/2) we have evaluated the performance of SAFE and iSAFE as a function of the window size. 
 iSAFE exploits shoulders of the sweep using the SAFE score as a building block and it performance stays robust with increasing window size. 
@@ -72,3 +53,28 @@ It depend on what you are exactly doing. For example,
 >* If you are scanning the whole genome, based on my experience for human data, I would recommend a 3 Mbp region with 1Mbp step-size.  
 >* If you are focused on specific locus, like LCT, you can play with different region sizes to get a sense of the signal.
 >* If you are confident that the favored mutation is within a small window (~100kbp) you can apply SAFE. Always keep in mind that you might get stuck in the [shoulder](https://doi.org/10.1534/genetics.115.174912) of another sweep and think your region is under selection. This is one of the reasons we devised iSAFE.
+
+<h4>Questions: </h4>
+
+Does program handle non-SNPs (indels, MNPs, and etc)? 
+
+>Yes, it keeps non-SNPs (indels, MNPs, and etc) as long as they have only one ALT (binary alleles).
+
+<h4>Questions: </h4>
+
+Does iSAFE program handle haploid samples?
+
+>Yes, when ploidy is consistent for all samples over all sites the program automatically handles ploidy.
+ If one sample have more than a ploidy in different region of your file it is inconsistent. 
+You can use the [```bcftools plugin check-ploidy```](http://samtools.github.io/bcftools/howtos/plugins.html) 
+to check ploidy of your target region. For example, in the first column ("[1]Sample") of the output of the following 
+command all the values must be unique, otherwise ploidy is inconsistent for repeated samples.
+>
+> ```bcftools plugin check-ploidy -r X:2000000-5000000 chrX.vcf.gz```
+
+
+<h4>Questions: </h4>
+
+When I try to run my vcf files the result is ```Error: There are <i> gaps with size greater than 10kbp.```
+ 
+>When there is a gap larger than ```MaxGapSize``` (default: 10kbp) the program raise an error. You can ignore this by setting the ```--IgnoreGaps``` flag or you can change the maximum gap size threshold by ```--MaxGapSize```.
