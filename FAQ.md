@@ -62,9 +62,13 @@ As a rule of thumb, if you region is small (&lt;200kbp or &lt;1000 segregating s
 
 How to pick a size for the target region?
 
->If the signal is very strong, Like LCT locus in European populations, 5Mbp is more than enough for iSAFE to exploit information from 
-the shoulders and identify the favored mutation. For weaker signals you can go with smaller window like 1Mbp or even 500kbp. 
+> In [Figure 2c](https://www.nature.com/articles/nmeth.4606/figures/2) we showed iSAFE performance stays robust with different region size. 
+The rank of the favored mutation and shape of the signal usually don't change when you change the region size. In our paper we picked 5Mbp 
+but we could use larger or smaller window size. Just make sure to be consistent through the whole analysis because absolute value of iSAFE 
+changes with region size. Therefore, if you want to use iSAFE, pick a large window (like 500kbp, 1Mbp,  2Mbp, 3Mbp, and so forth) and start your analysis.
+If the signal is very strong, Like LCT locus in European populations, 5Mbp is more than enough for iSAFE to exploit information from 
+the shoulders and identify the favored mutation. For weaker signals you can go with smaller region like 1Mbp or even 500kbp. 
 It depend on what you are exactly doing. For example, 
->* If you are scanning the whole genome, based on my experience for human data, I would recommend a 3 Mbp window with 1Mbp step-size.  
->* If you are focused on specific region, like LCT, You can play with different window sizes to get a sense of the region. The rank of the favored mutation and shape of the signal usually don't change when you change the window size.  It really doesn't matter as long as you fix the window size and calculate the P value based on that window size. In our paper we picked 5Mbp but we could use larger or smaller window size. Therefore, if you want to use iSAFE, pick a large window (like 500kbp, 1Mbp,  2Mbp, 3Mbp, and so forth) and fix that and start your analysis.
+>* If you are scanning the whole genome, based on my experience for human data, I would recommend a 3 Mbp region with 1Mbp step-size.  
+>* If you are focused on specific locus, like LCT, you can play with different region sizes to get a sense of the signal.
 >* If you are confident that the favored mutation is within a small window (~100kbp) you can apply SAFE. Always keep in mind that you might get stuck in the [shoulder](https://doi.org/10.1534/genetics.115.174912) of another sweep and think your region is under selection. This is one of the reasons we devised iSAFE.
