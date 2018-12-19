@@ -67,4 +67,7 @@ the shoulders and identify the favored mutation. For weaker signals you can go w
 It depend on what are you exactly doing. For example, 
 >* If you are scanning the whole genome, based on my experience for human data, I would recommend a 3 Mbp window with 1Mbp step-size.  
 >* If you are focused on specific region, like LCT, You can play with different window sizes to get a sense of the region. The rank of the favored mutation and shape of the signal usually don't change when you change the window size.  It really doesn't matter as long as you fix the window size and calculate the P value based on that window size. In our paper we picked 5Mbp but we could use larger or smaller window size. Therefore, if you want to use iSAFE, pick a large window (like 500kbp, 1Mbp,  2Mbp, 3Mbp, and so forth) and fix that and start your analysis.
->* If you are confident that the favored mutation is within a small window (~100kbp) you can apply SAFE. Always keep in mind that you might get stuck in the shoulder of another sweep and think your region is under selection. That's one of the reasons we devised iSAFE.
+>* If you are confident that the favored mutation is within a small window (~100kbp) you can apply SAFE. Always keep in mind that you might get stuck in the shoulder <cite>[1]</cite> of another sweep and think your region is under selection. That's one of the reasons we devised iSAFE.
+
+
+[1]:http://www.quotedb.com/quotes/2112
