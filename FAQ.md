@@ -54,6 +54,13 @@ It depend on what you are exactly doing. For example,
 >* If you are focused on specific locus, like LCT, you can play with different region sizes to get a sense of the signal.
 >* If you are confident that the favored mutation is within a small window (~100kbp) you can apply SAFE. Always keep in mind that you might get stuck in the [shoulder](https://doi.org/10.1534/genetics.115.174912) of another sweep and think your region is under selection. This is one of the reasons we devised iSAFE.
 
+
+<h4>Questions: </h4>
+
+What is the minimal number of haplotypes needed?
+>​In general, iSAFE performance improves with increasing sample size. In my experience with human populations, it works fine with 20 diploid-samples (40 haplotypes).
+
+
 <h4>Questions: </h4>
 
 Does program handle non-SNPs (indels, MNPs, and etc)? 
