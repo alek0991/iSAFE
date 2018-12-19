@@ -58,7 +58,7 @@ It depend on what you are exactly doing. For example,
 <h4>Questions: </h4>
 
 What is the minimal number of haplotypes needed?
->​In general, iSAFE performance improves with increasing sample size. In my experience with human populations, it works fine with 20 diploid-samples (40 haplotypes).
+>​When the sample size is too small we don't have enough diversity (recombination breakpoints) to identify the favored mutation. In general, iSAFE performance improves with increasing sample size. In my experience with human populations, it works fine with 20 diploid-samples (40 haplotypes).
 
 
 <h4>Questions: </h4>
