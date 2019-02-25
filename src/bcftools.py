@@ -140,7 +140,8 @@ def get_AA_df(AA_file, df):
     del df2[1]
     dfI = pd.merge(df2, dfAA, how='left', on='POS')
     dfI['FLIP'] = False
-    dfI.loc[dfI["ALT"]==dfI['AA'], "FLIP"] = True
+    I = (dfI["ALT"] == dfI['AA'])&(dfI['REF'].str.len()==1)&(dfI['ALT'].str.len()==1)
+    dfI.loc[I, "FLIP"] = True
     return dfI
 
 def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=None, sample_case=None, sample_cont=None,RandomSampleRate=0.1,ForceRandomSample=False, status=False):
