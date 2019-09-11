@@ -53,8 +53,7 @@ ancestral allele, and 1 denoting the derived allele. Not surprisingly, iSAFE per
     - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).  
     - You must use ```--sample-case``` and ```--sample-cont``` when the ```--input``` and ```--vcf-cont``` are the same (all samples are provided in a single vcf file).    
     
-
-
+Note: The software in vcf mode is more flexible and has more options. But if you don't have out-group samples (```--vcf-cont``` is not set), and hap file and vcf file contain the _exact_ same information (iSAFE only cares about position, phase, derived allele (1), and ancestral allele (0) in the vcf mode), then the output of iSAFE must be identical.
 
 Output:
 ==========
