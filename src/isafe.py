@@ -14,7 +14,7 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.4'
+                                                 '\niSAFE v1.0.5'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
@@ -60,7 +60,7 @@ def run():
                                               '\n  * Population column (first column) can have more than one population name. They are all considered the control populations.'
                                               '\n  * Sample ID\'s must be subset of the --vcf-cont file', required=False)
     parser.add_argument('--AA', help='<string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.'
-                                     '\n  * This is required in --format vcf.'
+                                     '\n  * This is strongly recommended  in --format vcf. However, if the ancestral allele file is not available the program raises a warning and assumes reference allele (REF) is ancestral allele.'
                                      '\n  * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/'
                                      '\n  * Download link (GRCh38/hg38): http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/'
                                      , required=False)
@@ -133,7 +133,9 @@ def run():
         # if not os.path.exists("%s.tbi"%(args.input)):
         #     raise ImportError("tabix index file .vcf.gz.tbi is required along with bgzipped vcf file .vcf.gz")
         if args.AA is None:
-            parser.error("--AA must be provided when input format is vcf.")
+        #    parser.error("--AA must be provided when input format is vcf.")
+            warnings.warn("Ancestral allele file (--AA) is not specified. Reference (REF) allele is considered as ancestral allele and alternative allele (ALT) is considered as derived allele. Strongly recommend to provide an ancestral allele file if it is available.")
+
         if args.region is None:
             parser.error("--region must be provided when input format is vcf.")
         elif args.input == args.vcf_cont:

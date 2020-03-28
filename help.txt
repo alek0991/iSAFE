@@ -14,7 +14,7 @@ usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
 iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
 ====================================================================
 Source code & further instructions can be found at: https://github.com/alek0991/iSAFE
-iSAFE v1.0.4
+iSAFE v1.0.5
 --------------------------------------------------------------------
 
 optional arguments:
@@ -67,7 +67,7 @@ optional arguments:
                           * Population column (first column) can have more than one population name. They are all considered the control populations.
                           * Sample ID's must be subset of the --vcf-cont file
   --AA AA               <string>: Path to the Ancestral Allele (AA) file in FASTA (.fa) format.
-                          * This is required in --format vcf.
+                          * This is strongly recommended  in --format vcf. However, if the ancestral allele file is not available the program raises a warning and assumes reference allele (REF) is ancestral allele.
                           * Download link (GRCh37/hg19): http://ftp.ensembl.org/pub/release-75/fasta/ancestral_alleles/
                           * Download link (GRCh38/hg38): http://ftp.ensemblorg.ebi.ac.uk/pub/release-88/fasta/ancestral_alleles/
   --region REGION       <chr:string>:<start position:int>-<end position:int>, the coordinates of the target region in the genome.

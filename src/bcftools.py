@@ -161,9 +161,15 @@ def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=
     if status:
         print 'Loading %0.3fMbp, %s:%i-%i, please wait ...'%(total_window_size/1e6, chrom, region_start, region_end)
     df = get_combined_vcf(chrom, region_start, region_end, case_vcf, cont_vcf=cont_vcf, case_IDs=case_IDs, cont_IDs=cont_IDs)
-    dfI = get_AA_df(AA_file, df)
-    I = df.index.get_level_values("POS").isin(dfI.loc[dfI['FLIP']==True, "POS"])
-    df.loc[I, :]=1-df.loc[I, :]
+    print AA_file
+    if AA_file is not None:
+        dfI = get_AA_df(AA_file, df)
+        I = df.index.get_level_values("POS").isin(dfI.loc[dfI['FLIP']==True, "POS"])
+        df.loc[I, :]=1-df.loc[I, :]
+    else:
+        dfI = None
+        # warnings.warn("Ancestral allele file (--AA) is not specified. Reference (REF) allele is considered as ancestral allele and alternative allele (ALT) is considered as derived allele. Strongly recommend to provide an ancestral allele file if it is available.")
+
     dfreq = df.groupby(level=0, axis=1).mean().join(df.groupby(level=1, axis=1).mean())
     dfreq['MDDAF'] = dfreq['case']-dfreq.min(1)
     Need_Random_Sample = sum((dfreq['case']>0.9)&(dfreq['MDDAF']>0.78))>0
