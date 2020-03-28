@@ -1,3 +1,5 @@
+* Version 1.0.5
+    - If the ancestral allele file (--AA) is not available the program raises a warning and assumes reference allele (REF) is ancestral allele.
 * Version 1.0.4
     - Raise error for inconsistent ploidy, non-biallelic, and empty region. 
 * Version 1.0.3
