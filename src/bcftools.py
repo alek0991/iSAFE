@@ -19,6 +19,7 @@ def get_ploidy(target_region, sample_arg, the_vcf):
     cmd += " | %s plugin check-ploidy"%bcf_tools
     dfp = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t')
     dfp.columns = ['Sample', 'Chromosome', 'Region Start', 'Region End', 'Ploidy']
+    dfp['Sample'] = dfp['Sample'].astype(str)
     id, count = np.unique(dfp['Sample'], return_counts=True)
     mixed_ploidy_samples = id[count > 1]
     if len(mixed_ploidy_samples)>0:

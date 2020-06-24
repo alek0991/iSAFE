@@ -1,3 +1,5 @@
+* Version 1.0.6
+    - Fixed bug with numerical sample names.
 * Version 1.0.5
     - If the ancestral allele file (--AA) is not available the program raises a warning and assumes reference allele (REF) is ancestral allele.
 * Version 1.0.4
