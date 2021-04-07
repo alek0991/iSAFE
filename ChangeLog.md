@@ -3,6 +3,7 @@
     - Raise error in create_rolling_indices() in isafeclass.py when total number of variants is smaller than --window
     - Raise error when  --window is smaller than --MinRegionSize-ps
     - Raise error when  --window is smaller than --step
+    - Print version (-v, --version)
 * Version 1.0.6
     - Fixed bug with numerical sample names.
 * Version 1.0.5
