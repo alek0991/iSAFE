@@ -182,6 +182,12 @@ def run():
     if total_window_size>args.MaxRegionSize:
         raise ValueError("The region is %.3fMbp and it cannot be greater than %iMbp." % (
         total_window_size / 1e6, args.MaxRegionSize / 1e6))
+    if (args.MinRegionSize_ps < args.window):
+        raise ValueError("The sliding window size --window (%i) cannot be smaller than --MinRegionSize-ps (%i)" % (
+        args.window, args.MinRegionSize_ps))
+    if (args.window < args.step):
+        raise ValueError("The sliding window size --window (%i) cannot be smaller than --step (%i)" % (
+        args.window, args.step))
     if num_gaps>0:
         if not args.IgnoreGaps:
             raise ValueError("There are %i gaps with size greater than %ikbp. Set --IgnoreGaps flag to ignore gaps."%(num_gaps, args.MaxGapSize/1e3))
@@ -214,8 +220,6 @@ def run():
                              "the region is too small for iSAFE analysis and better to use --SAFE flag to report "
                              "the SAFE score of the entire region." % (
                              NumSNPs, total_window_size / 1e3, args.MinRegionSize_ps, args.MinRegionSize_bp / 1e3)))
-        if (args.MinRegionSize_ps<args.window):
-            raise ValueError("The sliding window size --window (%i) cannot be smaller than --MinRegionSize-ps (%i)"%(args.window, args.MinRegionSize_ps))
         obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
         obj_isafe.fire(status=status)
         df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})
