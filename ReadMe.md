@@ -49,7 +49,7 @@ ancestral allele, and 1 denoting the derived allele. Not surprisingly, iSAFE per
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format (Default): ```--format vcf``` or ```-f vcf```
     - Only phased vcf files are accepted.
     - In v1.0.1 or above it keeps not SNPs (indels, MNPs, and etc) as long as they have only one ALT (binary alleles).
-    - vcf format only accepts indexed bgzipped VCF file (```.vcf.gz``` along with tabix index file ```.vcf.gz.tbi```).
+    - vcf format only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file).
     - The Ancestral Allele file (```--AA```) must be provided with ```--format vcf```. From version 1.0.5, if the ancestral allele file (--AA) is not available the program raises a warning and assumes reference allele (REF) is ancestral allele.
     - You can choose a subset of samples in the input vcf file by using ```--sample-case```. Otherwise all the samples in the input vcf file are considered as the case samples. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).
     - ```--vcf-cont``` is optional but recommended for capturing fixed sweeps. You can choose a subset of samples in this file by using ```--sample-cont``` option, otherwise all the samples in this file are cosidered as control population. See [sample ID file format](https://github.com/alek0991/iSAFE/blob/master/sample_ID_format.md).  
@@ -87,8 +87,8 @@ Data availability for vcf format
         - [GRCh37/hg19](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
         - [GRCh38/hg38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/)
     - You can use your own data and you don't have to use 1000GP data as ```--input``` (case) or ```--vcf-cont``` (control).
-    - Only accept bgzipped vcf files ```.vcf.gz``` for faster pre-processing.
-    - The tabix index file ```.vcf.gz.tbi``` is also required by bcftools along with bgzipped vcf files ```.vcf.gz```.
+    - Only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file) for faster pre-processing
+    - The index file is also required by bcftools.
 
 
 Demo 1: input in [hap](https://github.com/alek0991/iSAFE/blob/master/hap_format.md) format
