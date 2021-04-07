@@ -1,4 +1,4 @@
-usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
+usage: isafe.py [-h] [-v] [--format FORMAT] --input INPUT --output OUTPUT
                 [--vcf-cont VCF_CONT] [--sample-case SAMPLE_CASE]
                 [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION]
                 [--MaxRegionSize MAXREGIONSIZE]
@@ -19,6 +19,7 @@ iSAFE v1.0.7
 
 optional arguments:
   -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
   --format FORMAT, -f FORMAT
                         <string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).
                         iSAFE can handle two types of inputs (phased haplotypes are required):

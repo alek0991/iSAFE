@@ -8,15 +8,17 @@ from bcftools import get_snp_matrix
 import time
 import sys
 import os
+isafe_version = '1.0.7'
+
 def run():
     # command line parser
     parser = argparse.ArgumentParser(description='===================================================================='
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.7'
-                                                 '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
-
+                                                 '\niSAFE v%s'
+                                                 '\n--------------------------------------------------------------------'%isafe_version, formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('-v', '--version',action='version', version='iSAFE v%s'%isafe_version)
     # optional arguments
     parser.add_argument('--format', '-f',help='<string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).'
                                               '\niSAFE can handle two types of inputs (phased haplotypes are required):'
@@ -150,7 +152,7 @@ def run():
             raise ValueError("--RandomSampleRate must be non-negative and less than 1.")
     status = not args.StatusOff
     if status:
-        sys.stdout.write('-~'*30+'\n')
+        sys.stdout.write('-'*60+'\n')
         sys.stdout.write(time.ctime()+'\n')
 
     if args.region is not None:
@@ -230,6 +232,6 @@ def run():
             psi_k1.to_csv("%s.Psi.out"%args.output, sep='\t')
         if status:
             sys.stdout.write(time.ctime()+'\n')
-            sys.stdout.write('-~' * 30+'\n')
+            sys.stdout.write('-' * 60+'\n')
 if __name__ == '__main__':
     run()
