@@ -14,7 +14,7 @@ usage: isafe.py [-h] [--format FORMAT] --input INPUT --output OUTPUT
 iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
 ====================================================================
 Source code & further instructions can be found at: https://github.com/alek0991/iSAFE
-iSAFE v1.0.6
+iSAFE v1.0.7
 --------------------------------------------------------------------
 
 optional arguments:
@@ -23,7 +23,7 @@ optional arguments:
                         <string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).
                         iSAFE can handle two types of inputs (phased haplotypes are required):
                           * vcf format: --format vcf or -f vcf
-                            - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.
+                            - vcf format only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file).
                             - When input format is vcf, Ancestral Allele file (--AA) must be given.
                           * hap format: --format hap or -f hap
                             - Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.
@@ -37,7 +37,8 @@ optional arguments:
                         <string>: Path to the output(s).
                           * iSAFE generates <OUTPUT>.iSAFE.out
                           * When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out
-  --vcf-cont VCF_CONT   <string>: Path to the phased control population in .vcf or .vcf.gz format.
+  --vcf-cont VCF_CONT   <string>: Path to the phased control population.
+                          * only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file).
                           * This is optional but recommended for capturing fixed sweeps.
                           * This option is only available with --format vcf.
                           * You can choose a subset of samples in this file by using --sample-cont option,
@@ -88,6 +89,7 @@ optional arguments:
                         Default: 200000
   --MinRegionSize-ps MINREGIONSIZE_PS
                         <int>: Minimum region size in polymorphic sites.
+                          * Note that --window cannot be smaller than --MinRegionSize-ps.
                         Default: 1000
   --MaxGapSize MAXGAPSIZE
                         <int>: Maximum gap size in bp.

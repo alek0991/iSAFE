@@ -17,6 +17,7 @@ def get_ploidy(target_region, sample_arg, the_vcf):
     cmd += " -i 'N_ALT==1'"
     cmd += " %s" % (the_vcf)
     cmd += " | %s plugin check-ploidy"%bcf_tools
+    print cmd
     dfp = pd.read_csv(StringIO(os.popen(cmd).read()), sep='\t')
     dfp.columns = ['Sample', 'Chromosome', 'Region Start', 'Region End', 'Ploidy']
     dfp['Sample'] = dfp['Sample'].astype(str)

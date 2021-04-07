@@ -14,14 +14,14 @@ def run():
                                                  '\niSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution'
                                                  '\n===================================================================='
                                                  '\nSource code & further instructions can be found at: https://github.com/alek0991/iSAFE'
-                                                 '\niSAFE v1.0.6'
+                                                 '\niSAFE v1.0.7'
                                                  '\n--------------------------------------------------------------------', formatter_class=argparse.RawTextHelpFormatter)
 
     # optional arguments
     parser.add_argument('--format', '-f',help='<string>: Input format. <FORMAT> must be either hap or vcf (see the manual for more details).'
                                               '\niSAFE can handle two types of inputs (phased haplotypes are required):'
                                               '\n  * vcf format: --format vcf or -f vcf'
-                                              '\n    - vcf format can handle both vcf.gz (.tbi file is required for bcftools) and vcf.'
+                                              '\n    - vcf format only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file).'
                                               '\n    - When input format is vcf, Ancestral Allele file (--AA) must be given.'
                                               '\n  * hap format: --format hap or -f hap'
                                               '\n    - Input with hap format is not allowed with any of these: --vcf-cont, --sample-case, --sample-cont, --AA.'
@@ -34,7 +34,8 @@ def run():
                                               '\n  * When --OutputPsi is set, iSAFE generates <OUTPUT>.Psi.out in addition to <OUTPUT>.iSAFE.out'
                         , required=True)
 
-    parser.add_argument('--vcf-cont', help='<string>: Path to the phased control population in .vcf or .vcf.gz format.'
+    parser.add_argument('--vcf-cont', help='<string>: Path to the phased control population.'
+                                           '\n  * only accepts indexed bgzipped VCF (vcf.gz with index file) or indexed bcf files (.bcf with index file).'
                                            '\n  * This is optional but recommended for capturing fixed sweeps.'
                                            '\n  * This option is only available with --format vcf.'
                                            '\n  * You can choose a subset of samples in this file by using --sample-cont option,\n    otherwise all the samples in this file are cosidered as control population.'
@@ -80,6 +81,7 @@ def run():
     parser.add_argument('--MinRegionSize-bp', type=int, help='<int>: Minimum region size in bp.'
                                                           '\nDefault: 200000', required=False, default=200000)
     parser.add_argument('--MinRegionSize-ps', type=int, help='<int>: Minimum region size in polymorphic sites.'
+                                                             '\n  * Note that --window cannot be smaller than --MinRegionSize-ps.'
                                                           '\nDefault: 1000', required=False, default=1000)
     parser.add_argument('--MaxGapSize', type=int, help='<int>: Maximum gap size in bp.'
                                                        '\n  * When there is a gap larger than --MaxGapSize the program raise an error.'
@@ -126,8 +128,8 @@ def run():
             if not args.WarningOff:
                 warnings.warn("With [--format hap], iSAFE assumes that derived allele is 1 and ancestral allele is 0 in the input file, and the selection is ongoing (the favored mutation is not fixed).")
     if (args.format == 'vcf'):
-        if not args.input.endswith(".vcf.gz"):
-            raise ImportError("vcf format only accepts indexed bgzipped VCF file (.vcf.gz along with tabix index file .vcf.gz.tbi)")
+        if args.input.endswith(".vcf"):
+            raise ImportError("vcf format only accepts indexed bgzipped VCF or indexed bcf files")
         if not os.path.exists("%s"%(args.input)):
             raise ImportError("%s doesn't exist!"%(args.input))
         # if not os.path.exists("%s.tbi"%(args.input)):
@@ -212,6 +214,8 @@ def run():
                              "the region is too small for iSAFE analysis and better to use --SAFE flag to report "
                              "the SAFE score of the entire region." % (
                              NumSNPs, total_window_size / 1e3, args.MinRegionSize_ps, args.MinRegionSize_bp / 1e3)))
+        if (args.MinRegionSize_ps<args.window):
+            raise ValueError("The sliding window size --window (%i) cannot be smaller than --MinRegionSize-ps (%i)"%(args.window, args.MinRegionSize_ps))
         obj_isafe = iSafeClass(snp_matrix, args.window, args.step, args.topk, args.MaxRank)
         obj_isafe.fire(status=status)
         df_final = obj_isafe.isafe.loc[obj_isafe.isafe["freq"]<args.MaxFreq].sort_values("ordinal_pos").rename(columns={'id':"POS", 'isafe':'iSAFE', "freq":"DAF"})

@@ -4,6 +4,8 @@ import sys
 from safeclass import SafeClass
 
 def create_rolling_indices(total_variant_count, w_size, w_step):
+    if total_variant_count<w_size:
+        raise ValueError('Total number of variants (%i) cannot be smaller than sliding window size (--window %i). Please carefully read the instruction for following arguments: --SAFE, --window, --step, --MinRegionSize-bp, and --MinRegionSize-ps'%(total_variant_count, w_size))
     if w_step <= 0:
         return
     w_start = 0
