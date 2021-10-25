@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import warnings
 import pandas as pd
@@ -200,7 +202,7 @@ def run():
     snp_matrix = snp_matrix.loc[((1 - f) * f) > 0]
     NumSNPs = snp_matrix.shape[0]
     if status:
-        print "%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1])
+        print("%i SNPs and %i Haplotypes" % (snp_matrix.shape[0], snp_matrix.shape[1]))
     if NumSNPs<=1:
         raise ImportError("There is only %i variant in the target region!"%NumSNPs)
     if NumSNPs<=100:
@@ -214,7 +216,7 @@ def run():
         df_final['POS'] = snp_matrix.index
         df_final[["POS", "SAFE", "DAF", "phi", "kappa"]].to_csv("%s.SAFE.out"%args.output, index=None,sep='\t')
         if status:
-            print "SAFE completed successfully."
+            print("SAFE completed successfully.")
     else:
         if (NumSNPs < args.MinRegionSize_ps) | (total_window_size < args.MinRegionSize_bp):
             raise ValueError((
