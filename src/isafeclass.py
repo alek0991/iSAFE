@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import sys
-from safeclass import SafeClass
+from .safeclass import SafeClass
 
 def create_rolling_indices(total_variant_count, w_size, w_step):
     if total_variant_count<w_size:
@@ -14,7 +14,7 @@ def create_rolling_indices(total_variant_count, w_size, w_step):
         w_end = min(w_start + w_size, total_variant_count)
         if w_end >= total_variant_count:
             break
-        rolling_indices += [range(int(w_start), int(w_end))]
+        rolling_indices += [list(range(int(w_start), int(w_end)))]
         w_start += w_step
     return rolling_indices
 
@@ -50,7 +50,7 @@ def creat_snps_information_df(WS):
     :return:
     """
     temp_list = []
-    for key in WS.keys():
+    for key in list(WS.keys()):
         dfi = WS[key]["safe"].loc[:, ["ordinal_pos", "pos", "safe", "rank", "freq"]]
         dfi["window"] = key
         temp_list += [dfi]
@@ -85,7 +85,7 @@ def creat_matrix_Psi_k(M, Dw, Ifp, step_counter='XX', status=True):
                 sys.stdout.write("\r\tStep %s: %.2i%%" % (step_counter, progress))
                 sys.stdout.flush()
             progress0 = progress
-        for j in Dw.keys():
+        for j in list(Dw.keys()):
             output = isafe_kernel(Dw[j]["haf"], M[:, Ifp[i]])
             P[i, j] = output
     return step_function(P)

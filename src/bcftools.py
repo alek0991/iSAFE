@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
-from StringIO import StringIO
+from io import StringIO
 import warnings
 bcf_tools = "bcftools"
 
@@ -160,7 +160,7 @@ def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=
 
     total_window_size=region_end-region_start
     if status:
-        print 'Loading %0.3fMbp, %s:%i-%i, please wait ...'%(total_window_size/1e6, chrom, region_start, region_end)
+        print('Loading %0.3fMbp, %s:%i-%i, please wait ...'%(total_window_size/1e6, chrom, region_start, region_end))
     df = get_combined_vcf(chrom, region_start, region_end, case_vcf, cont_vcf=cont_vcf, case_IDs=case_IDs, cont_IDs=cont_IDs)
     if AA_file is not None:
         dfI = get_AA_df(AA_file, df)
@@ -178,11 +178,11 @@ def get_snp_matrix(chrom, region_start, region_end, case_vcf, AA_file, cont_vcf=
         case_num = sum(df.columns.get_level_values("group")=='case')
         NumberRandomSample = int(np.round(RandomSampleRate/(1-RandomSampleRate)*case_num))
         if status:
-            print "Adding %i random haplotypes (%i%%)." % (NumberRandomSample, RandomSampleRate * 100)
+            print("Adding %i random haplotypes (%i%%)." % (NumberRandomSample, RandomSampleRate * 100))
         I1 = list(np.random.choice(np.where(I==False)[0], NumberRandomSample))
 
         I[I1] = True
     elif cont_vcf is not None:
         if status:
-            print "MDDAF: Random samples are not required."
+            print("MDDAF: Random samples are not required.")
     return df.loc[:,I], dfreq, dfI,Need_Random_Sample
