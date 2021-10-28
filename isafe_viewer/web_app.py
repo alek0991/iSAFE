@@ -14,11 +14,11 @@ app.config['RESULT_FOLDER'] = RESULT_FOLDER
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if request.method == 'POST':
-        print(request.form)
+        print((request.form))
         time.sleep(2)
         try:
             populations = []
-            for key, value in request.form.items():
+            for key, value in list(request.form.items()):
                 if key == 'populations[]':
                     populations.append(value)
             if len(populations) == 0:

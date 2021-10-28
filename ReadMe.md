@@ -11,7 +11,13 @@ FAQ – frequently asked questions
 ==========
 Please read the [FAQ](https://github.com/alek0991/iSAFE/blob/master/FAQ.md) for answers to the most common queries.
 
-Software requirements
+Installation with bioconda
+==========
+
+After [installing bioconda](https://bioconda.github.io/user/install.html), install iSAFE with ```conda install isafe```.
+Then run ```isafe --help``` to see all available options.
+
+Manual installation: Software requirements
 ==========
 1. ```Python2.7``` and the following packages are required:
     -   ```numpy``` version 1.9 or above 
@@ -27,6 +33,9 @@ Software requirements
 
 Execution:
 ===========
+
+NOTE: If you installed iSAFE using bioconda, in the examples below replace ```python2.7 ./src/isafe.py``` with ```isafe```.
+
 Use the following command to see all the available options in iSAFE.
  
 ```sh
