@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from isafe import __version__
-
 try:
     from setuptools import setup
 except ImportError:

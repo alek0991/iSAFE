@@ -56,11 +56,12 @@ Manual installation: Software requirements
 Execution:
 ===========
 
-Use the following command to see all the available options in iSAFE with detailed instructions.
+Use the following command to see all the available options in iSAFE.
  
 ```sh
 isafe --help
 ```
+These detailed instructions are also provided in [./help.txt](https://github.com/alek0991/iSAFE/blob/master/help.txt).
 
 **Note:** If you have a script for iSAFE<v1.1.0 and want to update to the latest version you should change the commands from 
 ```sh
