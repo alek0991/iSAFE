@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from isafe import __version__
 
 try:
     from setuptools import setup
@@ -22,10 +23,10 @@ test_requirements = []
 
 setup(
     name='isafe',
-    version='0.1.7',
+    version=__version__,
     description="A program for identifying a favored mutation in positive selective sweep.",
     long_description=readme + '\n\n',
-    author="Ali Akbari et tal",
+    author="Ali Akbari et al",
     author_email='Ali_Akbari@hms.harvard.edu',
     url='https://github.com/alek0991/iSAFE',
     packages=['isafe'],

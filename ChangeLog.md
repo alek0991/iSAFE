@@ -1,3 +1,7 @@
+* Version 1.1.0
+    - Made compatible with both python 2 and 3
+    - Added Conda installation with all dependecies
+    - Command changed from ```python ./src/isafe.py [Options]``` to ```isafe [Options]```
 * Version 1.0.7
     - Fix bug for reading indexed BCF files
     - Raise error in create_rolling_indices() in isafeclass.py when total number of variants is smaller than --window
