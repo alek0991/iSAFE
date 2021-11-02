@@ -1,5 +1,5 @@
 * Version 1.1.1
-    - remove pysam as dependency
+    - remove pysam as requirement
 * Version 1.1.0
     - Made compatible with both python 2 and 3
     - Added Conda installation with all dependecies
