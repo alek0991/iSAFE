@@ -12,11 +12,8 @@ readme = """A program for identifying a favored mutation in positive selective s
     It enables researchers to accurately pinpoint the favored mutation in a large region (∼5 Mbp) 
     by using a statistic derived solely from population genetics signals."""
 
-requirements = [
-    'numpy>=1.9.0',
-    'pandas>=0.18.0',
-    'pysam'
-]
+requirements = ['numpy>=1.9.0', 'pandas>=0.18.0']
+
 
 test_requirements = []
 
@@ -37,13 +34,14 @@ setup(
     license="BSD-3-Clause",
     zip_safe=False,
     keywords='isafe',
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3'
-    ],
+      classifiers=["Environment :: Console",
+                   "Intended Audience :: Developers",
+                   "Intended Audience :: Science/Research",
+                   "Operating System :: Unix",
+                   "Programming Language :: Python",
+                   "Programming Language :: Python :: 2",
+                   "Programming Language :: Python :: 3",
+                   "Topic :: Scientific/Engineering :: Bio-Informatics"],
     test_suite='tests',
     tests_require=test_requirements
 )

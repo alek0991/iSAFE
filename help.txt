@@ -1,18 +1,18 @@
-usage: isafe [-h] [-v] [--format FORMAT] --input INPUT --output OUTPUT [--vcf-cont VCF_CONT]
-             [--sample-case SAMPLE_CASE] [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION]
-             [--MaxRegionSize MAXREGIONSIZE] [--MinRegionSize-bp MINREGIONSIZE_BP]
-             [--MinRegionSize-ps MINREGIONSIZE_PS] [--MaxGapSize MAXGAPSIZE] [--window WINDOW] [--step STEP]
-             [--topk TOPK] [--MaxRank MAXRANK] [--MaxFreq MAXFREQ] [--RandomSampleRate RANDOMSAMPLERATE]
-             [--ForceRandomSample] [--IgnoreGaps] [--StatusOff] [--WarningOff] [--OutputPsi] [--SAFE]
+usage: isafe [-h] [-v] [--format FORMAT] --input INPUT --output OUTPUT [--vcf-cont VCF_CONT] [--sample-case SAMPLE_CASE]
+             [--sample-cont SAMPLE_CONT] [--AA AA] [--region REGION] [--MaxRegionSize MAXREGIONSIZE]
+             [--MinRegionSize-bp MINREGIONSIZE_BP] [--MinRegionSize-ps MINREGIONSIZE_PS] [--MaxGapSize MAXGAPSIZE]
+             [--window WINDOW] [--step STEP] [--topk TOPK] [--MaxRank MAXRANK] [--MaxFreq MAXFREQ]
+             [--RandomSampleRate RANDOMSAMPLERATE] [--ForceRandomSample] [--IgnoreGaps] [--StatusOff] [--WarningOff]
+             [--OutputPsi] [--SAFE]
 
 ====================================================================
 iSAFE: (i)ntegrated (S)election of (A)llele (F)avored by (E)volution
 ====================================================================
 Source code & further instructions can be found at: https://github.com/alek0991/iSAFE
-iSAFE v1.1.0
+iSAFE v1.1.1
 --------------------------------------------------------------------
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -v, --version         show program's version number and exit
   --format FORMAT, -f FORMAT
