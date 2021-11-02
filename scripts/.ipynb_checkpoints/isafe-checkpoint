@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+import isafe
+
+if __name__ == '__main__':
+    isafe.run()
+
