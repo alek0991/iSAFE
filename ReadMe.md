@@ -50,9 +50,10 @@ Manual installation: Software requirements
 ```sh
     git clone https://github.com/alek0991/iSAFE.git
 ```
-4. Change to the iSAFE directory and run
+4. Change to the iSAFE directory and run the pip installation
 ```sh
-    python setup.py install
+    cd iSAFE
+    pip install .
 ```
 
 Execution:
