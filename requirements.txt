@@ -1,3 +1,3 @@
 numpy>=1.9.0
 pandas>=0.18.0
-# bcftools>=1.2 is required and in case you are manually installing isafe you should install bcftools first. Conda installation is recommended and it install all requirements automatically. For more details check the ReadMe file.
+# bcftools>=1.2 is required and in case you are manually installing isafe you should also install bcftools manually. However, Conda installation is recommended and it installs all requirements automatically. For more details check the ReadMe file.
