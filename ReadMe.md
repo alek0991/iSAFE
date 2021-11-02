@@ -14,7 +14,7 @@ FAQ – frequently asked questions
 ==========
 Please read the [FAQ](https://github.com/alek0991/iSAFE/blob/master/FAQ.md) for answers to the most common queries.
 
-Conda Installation
+Conda Installation (recommended)
 ==========
 **On 64-bit Linux and Mac OSX**, you can install iSAFE from [bioconda channel](https://bioconda.github.io/user/install.html) using conda package manager. iSAFE v1.1.0 and later is compatible with both python 2 and python 3.
 1. Install [Miniconda](https://bioconda.github.io/user/install.html) (you can skip this if you already have either of Miniconda or Anaconda installed). 
